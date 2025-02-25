@@ -1,34 +1,38 @@
 # Site settings
-title: RAI-LAB @ Gachon University
+title: RAI-LAB
+affiliation: "@ Gachon University"
 description: "Robotics & AI Laboratory"
 url: "https://hxxmin.github.io"
-
-
-
+baseurl: "/rai-lab"
 
 # Secondary Parameters
-baseurl: "/rai-lab"
 header-img: img/home-bg.jpg
 headercolor: "#FFFFFF"
-logo: /project-pages/img/logos/Project-Pages-New-Logo-Inverted.png
+logo: /rai-lab/img/logos/Project-Pages-New-Logo-Inverted.png
 
-# Tertiary Parameters
-github_username:  projectpages
-project_repository: project-pages
-disqus_shortname: project-pages
-g-analytics: UA-75881392-1
-altmetric: true
+# GitHub Pages 사용 시 필요
+plugins:
+  - jekyll-paginate
+  - jekyll-remote-theme
 
-# Build settings
-gems: [jekyll-paginate]
+# Markdown 설정
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
 paginate: 10
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 
+# 로컬 실행 시 safe 모드 해제
+safe: false
+
+# 빌드 시 제외할 항목
+exclude: 
+  - "less"
+  - "node_modules"
+  - "Gruntfile.js"
+  - "package.json"
+  - "README.md"
+  
 # Jekyll Settings
-
 defaults:
   -
     scope:
@@ -41,7 +45,7 @@ defaults:
 # Prose Settings
 prose:
   ignore: ['feed.xml', '/stl', '/ply', '/js', '/plugin', '/lib', '/projectors', '_layouts', '/_includes', 'Gruntfile.js', 'package.json', 'proselinks.jsonp', 'ppanchor.matin', '.gitignore', '/search', '/css', '/img', 'favicon.png','_data/*.json','LICENSES.md','README.md','colorscheme.scss','members.html','mentions.html','index.html']
-  siteurl: 'http://projectpages.github.io/project-pages/'
+  siteurl: 'https://hxxmin.github.io/rai-lab/'  # GitHub Pages URL로 변경
   ispp: true
   media: 'img'
   metadata:

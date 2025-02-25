@@ -9,7 +9,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a>
+            <!--a class="navbar-brand" href="{{ site.baseurl }}/">{{ site.title }}</a-->
+            <a class="navbar-brand" href="{{ site.baseurl }}/">
+                {{ site.title }} 
+                <span style="font-size: 0.8em; font-weight: normal;">
+                    {% if site.affiliation %}{{ site.affiliation }}{% endif %}
+                </span>
+            </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,16 +24,31 @@
                 <li>
                     <a href="{{ site.baseurl }}/">Home</a>
                 </li>
+                <!--
 				{% for page in site.pages %}{% if page.url contains "projects/" %}{% if page.title %}
                 <li>
                     <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
                 </li>
                 {% endif %}{% endif %}{% endfor %}
-                {% for page in site.pages %}{% if page.url contains "projects/" %}{% else %}{% if page.title %}
+                -->
+
+                <!--
+                {% for page in site.pages %}
+                    {% if page.url contains "projects/" %}
+                    {% else %}
+                        {% if page.title and page.url != '/' %}
+                        <li>
+                            <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+                        </li>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                -->
+                
                 <li>
-                    <a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+                    <a href="{{ site.baseurl }}/members">Members</a>
                 </li>
-                {% endif %}{% endif %}{% endfor %}
+
             </ul>
         </div>
         <!-- /.navbar-collapse -->

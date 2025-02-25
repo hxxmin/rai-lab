@@ -1,36 +1,96 @@
 ---
 layout: page
 title: "Members"
-description: "Collaborators working on this project."
+# description: "Collaborators working on this project."
 header-img: "img/home-bg.jpg"
 ---
 <hr>
 
+<!-- prof-->
+
+<div class="professor">
+	<img src="{{ site.baseurl }}/img/member/chm.png" style="margin-top:0px; margin-bottom:5px; margin-right:20px; float:left; width:200px !important">
+
+	<h2>
+		{{ site.data.prof.name }}
+		<a href="mailto:{{ site.data.prof.email }}" title="Send Email" style="font-size: 14px; font-weight: normal;">
+			<img src="{{ site.baseurl }}/img/icons/email-icon.png" style="height: 18px; margin-left: 5px; "> {{ site.data.prof.email }}
+		</a>
+	</h2>
+    <h3>{{ site.data.prof.role }}</h3>
+    
+    <span class="social-share-googleplus">
+        <a href="https://github.com/{{ site.data.prof.github }}" title="Github" style="font-size: 16px;">
+            <img src="{{ "/img/icons/github-icon.png" | prepend: site.baseurl }}" style="height:20px">Github
+        </a>
+    </span> 
+
+    {% if site.data.prof.google %}
+    <span class="social-share-googleplus">
+        <a href="{{ site.data.prof.google }}" title="Google Scholar" style="font-size: 16px;">
+            <img src="{{ "/img/icons/googlescholar-icon.png" | prepend: site.baseurl }}" style="height:20px">Google Scholar
+        </a>
+    </span>
+    {% endif %}
+
+    {% if site.data.prof.url %}
+    <span class="social-share-googleplus">
+        <a href="{{ site.data.prof.url }}" title="Personal Website" style="font-size: 16px;">
+            <img src="{{ "/img/icons/url-icon.png" | prepend: site.baseurl }}" style="height:20px">Website
+        </a>
+    </span>
+    {% endif %}
+
+    <br>
+    <p style="font-size: 18px;">Research Interest: {{ site.data.prof.intr }}</p>
+    <br>
+</div>
+
+<hr>
+
+<h2>Student</h2>
+<!-- ph.D -->
+<br>
 {% for member in site.data.members %} {% if member.visible == true %}
 
 	<img src="{{ member.img }}" style="margin-top:0px; margin-bottom:5px; margin-right:10px; float:left; width:150px !important">
 	
-	<h1>{{ member.name }}</h1>
-	
-	<h2>{{ member.role }}</h2>
+	<h3>
+		{{ member.name }}
+		{% if member.email %} 
+		<a href="mailto:{{ member.email }}" title="Send Email" style="font-size: 14px; font-weight: normal;">
+			<img src="{{ site.baseurl }}/img/icons/email-icon.png" style="height: 18px; margin-left: 5px; "> {{ member.email }}
+		</a>
+		{% endif %}
+	</h3>
+	<h4>{{ member.role }}</h4>
 	
 	{% if member.github %} 
-	<span class="social-share-googleplus"><a href="https://github.com/{{ member.github }}" title="Github"><img src="{{ "/img/icons/github-icon.png" | prepend: site.baseurl }}" style="height:20px">Github</a></span> 
+	<span class="social-share-googleplus"><a href="https://github.com/{{ member.github }}" title="Github" style="font-size: 16px;"><img src="{{ "/img/icons/github-icon.png" | prepend: site.baseurl }}" style="height:20px">Github</a></span> 
 	{% endif %}
-	{% if member.gplus %}
-	<span class="social-share-googleplus"><a href="{{ member.gplus }}" title="Google Plus"><img src="{{ "/img/icons/gplus-icon.png" | prepend: site.baseurl }}" style="height:20px">Google Plus</a></span>
+	{% if member.google %}
+	<span class="social-share-googleplus"><a href="{{ member.gplus }}" title="Google Plus" style="font-size: 16px;"><img src="{{ "/img/icons/googlescholar-icon.png" | prepend: site.baseurl }}" style="height:20px">Google Scholar</a></span>
 	{% endif %}
 	{% if member.url %}
-	<span class="social-share-googleplus"><a href="{{ member.url }}" title="Google Plus"><img src="{{ "/img/icons/url-icon.png"| prepend: site.baseurl }}" style="height:20px">Website</a></span>
+	<span class="social-share-googleplus"><a href="{{ member.url }}" title="Google Plus" style="font-size: 16px;"><img src="{{ "/img/icons/url-icon.png"| prepend: site.baseurl }}" style="height:20px">Website</a></span>
 	{% endif %}
 	
 	</br>
 
-	{% if member.bio %} 
-	{{ member.bio }}
+	{% if member.intr %} 
+	<p style="font-size: 18px;">Research Interest: {{ member.intr }}</p>
 	{% endif %}
 	
 	<hr>
 
 {% endif %}{% endfor %}
+
+<!-- tmp... hiring! -->
+<div style="text-align: center; margin-top: 20px;">
+    <img src="{{ site.baseurl }}/img/join.png" alt="Join Our Team" style="margin-top:0px; margin-bottom:5px; margin-right:10px; float:left; width:250px !important">
+    <h2>We are looking for <br> passionate students!</h2>
+    <p>If you are interested in robotics, AI, and Unmanned Vehicles research, we would love to work with you.</p>
+    <p>Feel free to contact us for more details.</p>
+</div>
+
 

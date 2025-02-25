@@ -10,10 +10,18 @@ layout: default
                 <div class="site-heading" style="padding: 75px 0">
 					{% if page.url == '/' %}
 					{% if site.logo %}
-					<img src= "{{ site.logo }}" style="height: 150px">
+					<img src= "{{ site.logo }}" style="height: 120px">
 					{% endif %}	
 					{% else %}{% endif %}	
                     <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    
+					{% if page.url == '/' %}
+                    <h3 style="margin-top: -6px;">
+                        <span style="font-weight: normal;">
+                            {% if page.affiliation %}{{ page.affiliation }}{% else %}{{ site.affiliation }}{% endif %}
+                        </span>
+                    </h3>    
+					{% else %}{% endif %}	                
                     <hr class="small">
                     <span class="subheading">{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}</span>
                 </div>
