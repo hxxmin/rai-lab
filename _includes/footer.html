@@ -1,77 +1,56 @@
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                    <li>
-                        <a href="{{ "/feed.xml" | prepend: site.baseurl }}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    {% if site.twitter_username %}
-                    <li>
-                        <a href="https://twitter.com/{{ site.twitter_username }}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if site.facebook_username %}
-                    <li>
-                        <a href="https://www.facebook.com/{{ site.facebook_username }}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    {% endif %}
-                    {% if site.github_username %}
-                    <li>
-                        <a href="https://github.com/{{ site.github_username }}/{{ site.project_repository}}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    {% endif %}
-					{% if site.github_username == "projectpages" %}
-                    <li>
-                        <a href="https://github.com/projectpages/project-pages/issues">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-exclamation fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-		    <li>
-                        <a href="https://github.com/projectpages/project-pages/wiki/">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-info fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/projectpages/project-pages/fork">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-code-fork fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    {% endif %}				
-                </ul>
-                <p class="copyright text-muted"> Copyright © <a href="http://ahmetcecen.github.io/" target="_blank">Ahmet Cecen</a>,  <a href="http://mined.gatech.edu/" target="_blank">MINED@GaTech</a> and <a href="https://github.com/projectpages" target="_blank">Project Pages</a> 2016. </p>
-            </div>
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-column small-column">
+            <a href="https://www.gachon.ac.kr/kor/index.do" target="_blank">
+                <img src="{{ site.baseurl }}/img/logos/gachon_logo.jpg" alt="가천대학교" class="footer-logo">
+            </a>
+        </div>
+        <div class="footer-column">
+            Copyright © 2025 Robotics & AI Laboratory
+            Gachon University, Dept. of Software
+        </div>
+        <div class="footer-column">
+            Contact: 
+            <br>
+            #736, AI-Hall, Gachon University,
+            <br>
+            1342 Seongnamdaero, Sujeong-gu, Seongnam-si, Gyeongi-do, Korea
+            <br>
+            +82-31-750-5320
         </div>
     </div>
 </footer>
 
+<style>
+    .footer {
+        background-color: #ecfeff;  /* 배경 색상 */
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+    .footer-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: start;
+        max-width: 1000px;
+        margin: auto;
+    }
+    .footer-column {
+        font-size: 13px;
+        color: #000000;
+        flex: 1;
+        padding: 10px;
+        text-align: left;
+    }
+    .small-column {
+        flex: 0.9; /* 첫 번째 열을 작게 설정 */
+    }
+    .footer-column p {
+        font-size: 14px;
+        color: #bbb;
+    }
+    .footer-logo {
+        max-width: 230px; /* 로고 크기 조정 */
+        height: auto;
+    }
+</style>

@@ -1,0 +1,63 @@
+---
+layout: page
+title: "News"
+header-img: "img/home-bg.jpg"
+---
+
+<table class="news-table">
+    {% assign year_counts = site.data.news | group_by: "year" %}
+    {% for group in year_counts %}
+        {% assign first = true %}
+        {% for news in group.items %}
+        <tr>
+            {% if first %}
+            <td class="news-year" rowspan="{{ group.items.size }}">{{ news.year }}</td>
+            {% assign first = false %}
+            {% endif %}
+            <td class="news-details">
+                <b class="news-type">{{ news.type }}</b>
+                <i class="news-date">({{ news.month }})</i> 
+                <span class="news-content">{{ news.content }}</span>
+            </td>
+        </tr>
+        {% endfor %}
+    {% endfor %}
+</table>
+
+<style>
+    .news-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .news-year {
+        width: 10%;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        background-color: #f9f9f9;
+    }
+    .news-details {
+        width: 90%;
+        padding-left: 10px;
+        vertical-align: top;
+    }
+    .news-type {
+        font-size: 16px; 
+        font-weight: bold;
+    }
+    .news-date {
+        font-size: 15px; 
+        font-style: italic;
+        color: #666;
+    }
+    .news-content {
+        font-size: 15px; 
+        color: #444;
+    }
+    tr {
+        border-bottom: 1px solid #ddd;
+    }
+    tr:first-child {
+        border-top: 1px solid #ddd;
+    }
+</style>

@@ -1,42 +1,133 @@
 ---
 layout: page
 title: "Home"
+# main-img: "img/main.jpg"
 ---
-<pre>
-    {{ site.pages | inspect }}
-</pre>
-{% for post in paginator.posts %}
-<div class="post-preview">
-    <a href="{{ post.url | prepend: site.baseurl }}">
-        <h2 class="post-title">            {{ post.title }}
-        </h2>
-        {% if post.subtitle %}
-        <h3 class="post-subtitle">
-            {{ post.subtitle }}
-        </h3>
-        {% endif %}
-    </a>
-    <p class="post-meta" style="margin-bottom:5px">Posted by {{ post.author }} on {{ post.date | date: "%B %-d, %Y" }}</p>
-	<div class="notepad-index-post-tags" style="">
-		{% for tag in post.tags %}<a href="{{ site.baseurl }}/search/index.html#{{ tag | cgi_encode }}" title="Other posts from the {{ tag | capitalize }} tag">{{ tag | capitalize }}</a>{% unless forloop.last %}&nbsp;{% endunless %}{% endfor %}
-	</div>
-</div>
-<hr>
-{% endfor %}
 
-<!-- Pager -->
-{% if paginator.total_pages > 1 %}
-<ul class="pager">
-    {% if paginator.previous_page %}
-    <li class="previous">
-        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
-    </li>
-    {% endif %}
-    {% if paginator.next_page %}
-    <li class="next">
-        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
-    </li>
-    {% endif %}
-</ul>
+<!-- 메인 이미지 -->
+{% if page.main-img and page.main-img != "" %}
+<div class="main-banner" style="background-image: url('{{ page.main-img }}');"></div>
 {% endif %}
 
+<!-- 연구실 소개 -->
+<div class="lab-description">
+    <h2>Welcome to Robotics & AI Laboratory</h2>
+    <p>
+        Robotics & AI Laboratory는 로보틱스, 로봇 지능 제어, 자율주행 기술을 연구합니다. <br><br>
+
+        우리 연구실은 로봇이 다양한 환경에서 자율적으로 동작할 수 있도록 하는 기술 개발에 집중하고 있습니다.
+        특히, 실세계에서 적용 가능한 실용적인 알고리즘과 시스템을 연구하며,
+        최신 AI 기술을 활용해 로봇의 인식, 의사결정, 행동 계획을 최적화함으로써
+        차세대 자율 지능형 로봇의 가능성을 확장하고자 합니다.
+    </p>
+    <p>
+        Robotics & AI Laboratory conducts research in robotics, intelligent robot control, and autonomous driving.<br><br>
+        Our lab focuses on developing technologies that enable robots to operate autonomously in diverse environments.
+        We develop practical algorithms that can be applied to real-world scenarios.
+        By leveraging the latest AI technologies, we aim to optimize robot perception, decision-making, and motion
+        planning,
+        ultimately expanding the potential of next-generation autonomous intelligent robots.
+    </p>
+</div>
+<hr>
+
+<!-- 최신 뉴스 -->
+<div class="news-section">
+    <h3>Latest News</h3>
+
+    {% assign sorted_news = site.data.news | sort: "year" | reverse %}
+    {% assign sorted_news = sorted_news | sort: "month" | reverse %}
+    {% assign latest_news = sorted_news | slice: 0, 5 %}
+
+    {% assign grouped_news = latest_news | group_by: "year" %}
+    {% for year_group in grouped_news %}
+    {% assign month_grouped = year_group.items | group_by: "month" %}
+
+    {% for month_group in month_grouped %}
+    <div class="news-group">
+        <h4 class="news-date">{{ year_group.name }} {{ month_group.name }}</h4>
+
+        {% for news in month_group.items %}
+        <p class="news-content">
+            <span class="news-type">{{ news.type }}</span>
+            <span class="news-text">{{ news.content }}</span>
+        </p>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% endfor %}
+
+    <div class="news-more">
+        <a href="{{ site.baseurl }}/news">+ more</a>
+    </div>
+</div>
+
+<style>
+    /* 메인 이미지 스타일 */
+    .main-banner {
+        width: 100%;
+        height: 400px;
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* 연구실 소개 스타일 */
+    .lab-description p {
+        text-align: justify;
+        /* 양쪽 정렬 적용 */
+        font-family: "Arial", sans-serif;
+        font-size: 0.9em;
+        color: #555;
+        line-height: 1.4;
+    }
+
+    /* 뉴스 섹션 스타일 */
+    .news-section {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 5px 20px;
+    }
+    .news-section h3 {
+    margin-top: 10px;
+    }
+
+    .news-group {
+        margin-bottom: 10px;
+    }
+
+    .news-date {
+        margin: 0;
+    }
+
+    .news-content {
+        display: inline;
+    }
+
+    .news-type {
+        font-size: 1em;
+        font-weight: bold;
+    }
+
+    .news-text {
+        font-size: 0.9em;
+    }
+
+    .news-more {
+        text-align: right;
+        margin-top: 10px;
+    }
+
+    .news-more a {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 0.7em;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 3px;
+    }
+
+    .news-more a:hover {
+        background: #0056b3;
+    }
+</style>

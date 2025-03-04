@@ -32,7 +32,7 @@
                 {% endif %}{% endif %}{% endfor %}
                 -->
 
-                <!--
+                <!--                
                 {% for page in site.pages %}
                     {% if page.url contains "projects/" %}
                     {% else %}
@@ -46,7 +46,19 @@
                 -->
                 
                 <li>
+                    <a href="{{ site.baseurl }}/news">news</a>
+                </li>
+
+                <li>
                     <a href="{{ site.baseurl }}/members">Members</a>
+                </li>
+
+                <li>
+                    <a href="{{ site.baseurl }}/publications">Publications</a>
+                </li>
+
+                <li>
+                    <a href="{{ site.baseurl }}/patents">Patents</a>
                 </li>
 
             </ul>

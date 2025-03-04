@@ -7,24 +7,33 @@ layout: default
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading" style="padding: 75px 0">
-					{% if page.url == '/' %}
-					{% if site.logo %}
-					<img src= "{{ site.logo }}" style="height: 120px">
-					{% endif %}	
-					{% else %}{% endif %}	
-                    <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
-                    
-					{% if page.url == '/' %}
-                    <h3 style="margin-top: -6px;">
-                        <span style="font-weight: normal;">
-                            {% if page.affiliation %}{{ page.affiliation }}{% else %}{{ site.affiliation }}{% endif %}
-                        </span>
-                    </h3>    
-					{% else %}{% endif %}	                
-                    <hr class="small">
-                    <span class="subheading">{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}</span>
+                <div class="site-heading" style="padding: 75px 0;">
+                    {% if page.url == '/' %}
+                        <div class="top-container">
+                            {% if site.logo %}
+                            <!-- 로고를 왼쪽 정렬 -->
+                            <div class="logo-container">
+                                <img src="{{ site.logo }}" style="height: 120px;">
+                            </div>
+                            {% endif %}
+                
+                            <!-- 텍스트를 오른쪽 정렬 -->
+                            <div class="text-container">
+                                <h1 style="margin: 0;">{{ site.title }}</h1>
+                                <h3 style="margin-top: -6px; font-weight: normal;">{% if page.affiliation %}{{ page.affiliation }}{% else %}{{ site.affiliation }}{% endif %}</h3>
+                            </div>
+                        </div>
+                
+                        <!-- 아래 hr과 description을 원래 줄바꿈되도록 유지 -->
+                        <div class="subheading">
+                            <hr class="small">
+                            {{ site.description }}
+                        </div>
+                    {% else %}
+                        <h1>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
+                    {% endif %}
                 </div>
+                
             </div>
         </div>
     </div>
@@ -40,3 +49,28 @@ layout: default
 </div>
 
 <hr>
+
+<style>
+.top-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 로고와 텍스트를 한 줄 정렬 */
+    gap: 20px; /* 로고와 텍스트 사이 여백 */
+    text-align: left; /* 텍스트 왼쪽 정렬 */
+}
+
+.logo-container {
+    flex-shrink: 0; /* 로고 크기 고정 */
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column; /* 텍스트를 위아래 정렬 */
+}
+
+/* hr과 site.description은 원래대로 줄바꿈 */
+.subheading {
+    text-align: center;
+    margin-top: 10px;
+}
+</style>

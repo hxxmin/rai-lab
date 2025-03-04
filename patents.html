@@ -1,0 +1,74 @@
+---
+layout: page
+title: "Patents"
+header-img: "img/home-bg.jpg"
+---
+
+<table>
+    {% assign year_counts = site.data.patent | group_by: "year" %}  <!-- 연도별 그룹화 -->
+    {% for group in year_counts %}
+        {% assign first = true %}
+        {% for pub in group.items %}
+        <tr>
+            {% if first %}
+            <td class="pub-year" rowspan="{{ group.items.size }}">{{ pub.year }}</td>
+            {% assign first = false %}
+            {% endif %}
+            <td class="pub-details">
+                <b class="pub-title">{{ pub.title }}</b> <br>
+                <span class="pub-info">
+                    {% if pub.registration %}
+                    Registration - {{pub.registration}}
+                    {% endif %}
+                    <br>
+                    Application - {{pub.application}}
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+    {% endfor %}
+</table>
+
+<style>
+    .publications {
+        width: 80%;
+        margin: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .pub-year {
+        width: 10%;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        white-space: nowrap;
+        background-color: #f9f9f9;
+        font-size: 14px;
+    }
+    .pub-details {
+        width: 90%;
+        padding-left: 15px;
+        vertical-align: top;
+        font-size: 14px; 
+    }
+    .pub-title {
+        font-size: 16px; 
+    }
+    .pub-authors, .pub-paper, .pub-volume, .pub-number, .pub-pages {
+        font-size: 14px; 
+        color: #666;
+    }
+    .pub-link {
+        font-size: 13px;
+        color: blue;
+        text-decoration: none;
+    }
+    tr {
+        border-bottom: 1px solid #ddd;
+    }
+    tr:first-child {
+        border-top: 1px solid #ddd;
+    }
+</style>
