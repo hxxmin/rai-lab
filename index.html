@@ -33,7 +33,7 @@ title: "Home"
 
 <!-- 최신 뉴스 -->
 <div class="news-section">
-    <h3>Latest News</h3>
+    <h4>Latest News</h4>
 
     {% assign sorted_news = site.data.news | sort: "year" | reverse %}
     {% assign sorted_news = sorted_news | sort: "month" | reverse %}
@@ -45,7 +45,7 @@ title: "Home"
 
     {% for month_group in month_grouped %}
     <div class="news-group">
-        <h4 class="news-date">{{ year_group.name }} {{ month_group.name }}</h4>
+        <h5 class="news-date">{{ year_group.name }} {{ month_group.name }}</h5>
 
         {% for news in month_group.items %}
         <p class="news-content">
@@ -75,8 +75,8 @@ title: "Home"
     .lab-description p {
         text-align: justify;
         /* 양쪽 정렬 적용 */
-        font-family: "Arial", sans-serif;
-        font-size: 0.9em;
+        font-family: "Noto Sans KR", "Arial", sans-serif;
+        font-size: 0.8em;
         color: #555;
         line-height: 1.4;
     }
@@ -104,12 +104,12 @@ title: "Home"
     }
 
     .news-type {
-        font-size: 1em;
+        font-size: 0.8em;
         font-weight: bold;
     }
 
     .news-text {
-        font-size: 0.9em;
+        font-size: 0.7em;
     }
 
     .news-more {

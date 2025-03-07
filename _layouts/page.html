@@ -7,7 +7,7 @@ layout: default
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading" style="padding: 75px 0;">
+                <div class="site-heading" style="padding: 75px 0 25px 0;">
                     {% if page.url == '/' %}
                         <div class="top-container">
                             {% if site.logo %}
@@ -51,26 +51,33 @@ layout: default
 <hr>
 
 <style>
-.top-container {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* 로고와 텍스트를 한 줄 정렬 */
-    gap: 20px; /* 로고와 텍스트 사이 여백 */
-    text-align: left; /* 텍스트 왼쪽 정렬 */
-}
+    /* 제목과 소제목의 패딩 조정 */
+    .site-heading {
+        padding: 40px 0; /* 기존 75px → 40px으로 줄임 */
+    }
 
-.logo-container {
-    flex-shrink: 0; /* 로고 크기 고정 */
-}
+    /* h1, h3의 여백 조정 */
+    .site-heading h1 {
+        margin-bottom: 5px; /* 기본적으로 큰 여백을 줄임 */
+    }
 
-.text-container {
-    display: flex;
-    flex-direction: column; /* 텍스트를 위아래 정렬 */
-}
+    .site-heading h3 {
+        margin-top: -4px;
+        margin-bottom: 0; /* h3의 불필요한 아래 여백 제거 */
+    }
 
-/* hr과 site.description은 원래대로 줄바꿈 */
-.subheading {
-    text-align: center;
-    margin-top: 10px;
-}
+    /* subheading 부분의 여백 줄이기 */
+    .subheading {
+        margin-top: 5px; /* 기존보다 줄여서 타이트하게 만듦 */
+        margin-bottom: 5px;
+    }
+
+    /* 로고와 텍스트 간격 조정 */
+    .top-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px; /* 로고와 텍스트 사이 여백 줄이기 */
+        text-align: left;
+    }
 </style>
