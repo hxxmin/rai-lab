@@ -2,21 +2,18 @@
     <div class="footer-container">
         <div class="footer-column small-column">
             <a href="https://www.gachon.ac.kr/kor/index.do" target="_blank">
-                <img src="{{ site.baseurl }}/img/logos/gachon_logo.jpg" alt="가천대학교" class="footer-logo">
+                <img src="{{ site.baseurl }}/img/logos/gachon_logo.png" alt="가천대학교" class="footer-logo">
             </a>
         </div>
         <div class="footer-column">
-            Copyright © 2025 Robotics & AI Laboratory
-            Gachon University, Dept. of Software
+            <p>Copyright © 2025 Robotics & AI Laboratory</p>
+            <p>Gachon University, School of Software</p>
         </div>
         <div class="footer-column">
-            Contact: 
-            <br>
-            #736, AI-Hall, Gachon University,
-            <br>
-            1342 Seongnamdaero, Sujeong-gu, Seongnam-si, Gyeongi-do, Korea
-            <br>
-            +82-31-750-5320
+            <p>Contact:</p>
+            <p>#736, AI-Hall, Gachon University</p>
+            <p>1342 Seongnamdaero, Sujeong-gu, Seongnam-si, Gyeongi-do, Korea</p>
+            <p>+82-31-750-5320</p>
         </div>
     </div>
 </footer>
@@ -24,33 +21,56 @@
 <style>
     .footer {
         background-color: #ecfeff;  /* 배경 색상 */
-        color: white;
+        color: #333;  /* 가독성을 고려한 글자 색 */
         padding: 20px 0;
         text-align: center;
     }
+
     .footer-container {
         display: flex;
-        justify-content: space-around;
-        align-items: start;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap; /* 화면이 작아지면 줄바꿈 */
         max-width: 1000px;
         margin: auto;
+        gap: 20px; /* 요소 간격 */
     }
+
     .footer-column {
-        font-size: 13px;
+        font-size: 14px;
         color: #000000;
         flex: 1;
+        min-width: 250px; /* 최소 크기 설정 */
         padding: 10px;
         text-align: left;
     }
+
     .small-column {
-        flex: 0.9; /* 첫 번째 열을 작게 설정 */
+        flex: 0.5; /* 첫 번째 열을 작게 설정 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
+
     .footer-column p {
-        font-size: 14px;
-        color: #bbb;
+        margin: 5px 0;
     }
+
     .footer-logo {
-        max-width: 230px; /* 로고 크기 조정 */
+        max-width: 200px; /* 로고 크기 조정 */
         height: auto;
+    }
+
+    /* 모바일 화면에서는 세로 정렬 */
+    @media (max-width: 768px) {
+        .footer-container {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .footer-column {
+            text-align: center;
+        }
     }
 </style>
