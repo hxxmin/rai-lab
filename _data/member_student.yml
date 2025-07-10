@@ -3,11 +3,8 @@
 - name: "Lee Chae Min"
   role: "Undergraduate Research Assistant"
   img: "img/member/LeeChaeMin.jpg"
-  github: ""
   email: "chaemin8600@gachon.ac.kr"
-  google: ""
   intr: "Intelligent Robotics, Robot Navigation, Sensor Fusion"
-  url: ""
   visible: true
 
 - name: "Lee Chae Min"
