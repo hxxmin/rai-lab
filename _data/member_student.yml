@@ -1,0 +1,31 @@
+# Student Members
+
+- name: "Lee Chae Min"
+  role: "Undergraduate Research Assistant"
+  img: "img/member/LeeChaeMin.jpg"
+  github: ""
+  email: "chaemin8600@gachon.ac.kr"
+  google: ""
+  intr: "Intelligent Robotics, Robot Navigation, Sensor Fusion"
+  url: ""
+  visible: true
+
+- name: "Lee Chae Min"
+  role: "Undergraduate Research Assistant"
+  img: "img/member/LeeChaeMin.jpg"
+  github: ""
+  email: "chaemin8600@gachon.ac.kr"
+  google: ""
+  intr: "Intelligent Robotics, Robot Navigation, Sensor Fusion"
+  url: ""
+  visible: false
+
+- name: Ahmet Cecen
+  role: "Data Scientist / Materials Informatics"
+  img: https://avatars1.githubusercontent.com/u/7231251?v=3&s=460
+  github: ahmetcecen
+  email: "hmcho9@gachon.ac.kr"
+  google: https://scholar.google.com/citations?user=wWe-FnsAAAAJ&hl=en
+  intr: Intelligent Robotics, Mobile Robotics, Autonomous Driving Vehicles, SLAM
+  url: http://ahmetcecen.github.io/
+  visible: false 

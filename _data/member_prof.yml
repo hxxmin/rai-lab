@@ -1,11 +1,10 @@
-# professor
+# Professor Information
 
 name: Hae Min Cho
 role: Assistant Professor # / Gachon University
-img: "img/member/chm.png"
+img: "img/member/ChoHaeMin.png"
 github: hxxmin
 email: "hmcho9@gachon.ac.kr"
 google: https://scholar.google.com/citations?user=wWe-FnsAAAAJ&hl=en
 intr: Intelligent Robotics, Mobile Robotics, Autonomous Driving Vehicles, SLAM
-url: http://hxxmin.github.io/
-   
+url: http://hxxmin.github.io/ 
