@@ -1,4 +1,9 @@
 - year: 2025
+  month: "Oct"
+  type: "Journal"
+  content: "A paper titled “Robust Visual–Inertial Odometry via Multi-Scale Deep Feature Extraction and Flow-Consistency Filtering” has been published in the journal Applied Sciences."
+
+- year: 2025
   month: "Feb"
   type: "Welcome"
   content: "RAI-LAB has been established at Gachon University by Prof. Hae Min Cho."

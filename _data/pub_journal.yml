@@ -1,4 +1,12 @@
 
+- year: 2025
+  title: "Robust Visual–Inertial Odometry via Multi-Scale Deep Feature Extraction and Flow-Consistency Filtering"
+  authors: "Hae Min Cho"
+  journal: "Applied Sciences"
+  volume: 15
+  pages: "10935"
+  link: "https://doi.org/10.3390/app152010935"
+
 - year: 2024
   title: "Finite-Plane Simultaneous Localization and Mapping (FP-SLAM): A New RGB-D SLAM Exploiting Inter-Feature Relationship"
   authors: "Hae Min Cho and Euntai Kim"
