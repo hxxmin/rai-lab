@@ -1,6 +1,6 @@
 - year: 2025
-  title: "Robust Visualâ\x80\x93Inertial Odometry via Multi-Scale Deep Feature Extraction\
-    \ and Flow-Consistency Filtering"
+  title: Robust Visual–Inertial Odometry via Multi-Scale Deep Feature Extraction and
+    Flow-Consistency Filtering
   authors: Hae Min Cho
   journal: Applied Sciences
   volume: '15'
@@ -25,12 +25,9 @@
   volume: '5'
   pages: 2568-2579
 - year: 2019
-  title: "ì\x84¼ì\x84\x9C ì\x9Cµí\x95© ì\x8B\x9Cì\x8A¤í\N\x9Cì\x9D\x84 ì\x9D´ì\x9A\
-    ©í\x95\x9C ì\x8B¬ì¸µ ì»¨ë²\x8Cë£¨ì\N\x98 ì\x8B ê²½ë§\x9D ê¸°ë°\x98 6ì\x9E\x90\
-    ì\x9C ë\x8F\x84 ì\x9C\x84ì¹\x98 ì\x9E¬ì\x9D¸ì\x8B\x9D"
-  authors: "ì¡°í\x98\x95ê¸°, ì¡°í\x95´ë¯¼, ì\x9D´ì\x84±ì\x9B\x90, ê¹\x80ì\x9D\x80\
-    í\x83\x9C"
-  journal: "ë¡\x9Cë´\x87í\x95\x99í\x9A\x8C ë\N¼ë¬¸ì§\x80"
+  title: 센서 융합 시스템을 이용한 심층 컨벌루션 신경망 기반 6자유도 위치 재인식
+  authors: 조형기, 조해민, 이성원, 김은태
+  journal: 로봇학회 논문지
   volume: '2'
   pages: 87-93
 - year: 2018
