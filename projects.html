@@ -3,6 +3,8 @@ layout: page
 title: "Projects"
 header-img: "img/home-bg.jpg"
 ---
+<p>project size: {{ site.data.project | size }}</p>
+<pre>{{ site.data.project | jsonify }}</pre>
 
 <table>
     {% for pub in site.data.project %}
