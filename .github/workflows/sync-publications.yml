@@ -28,7 +28,7 @@ jobs:
         env:
           PUBS_CSV_URL: ${{ secrets.PUBS_CSV_URL }}
         run: |
-          python scripts/sync_pubs_split.py "$PUBS_CSV_URL" \
+          python scripts/sync_publications.py "$PUBS_CSV_URL" \
             "_data/pub_journal.yml" \
             "_data/pub_conf_int.yml" \
             "_data/pub_conf_dom.yml"
