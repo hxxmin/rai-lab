@@ -17,6 +17,7 @@ header-img: "img/home-bg.jpg"
             <td class="pub-year" rowspan="{{ group.items.size }}">{{ pub.year }}</td>
             {% assign first = false %}
             {% endif %}
+
             <td class="pub-details">
                 <b class="pub-title">{{ pub.title }}</b> <br>
                 <span class="pub-authors">{{ pub.authors }}</span>,  
@@ -32,6 +33,18 @@ header-img: "img/home-bg.jpg"
                 {% endif %}
                 {% if pub.link %}
                 <a href="{{ pub.link }}" target="_blank" class="pub-link">[Link]</a>
+                {% endif %}
+            </td>
+            
+            <td class="pub-thumb-cell">
+                {% if pub.image_url %}
+                {% if pub.link %}
+                    <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link" aria-label="Open paper link">
+                    <img src="{{ pub.image_url }}" alt="thumbnail" class="pub-thumb" loading="lazy">
+                    </a>
+                {% else %}
+                    <img src="{{ pub.image_url }}" alt="thumbnail" class="pub-thumb" loading="lazy">
+                {% endif %}
                 {% endif %}
             </td>
         </tr>
@@ -139,10 +152,30 @@ header-img: "img/home-bg.jpg"
         color: blue;
         text-decoration: none;
     }
+    .pub-thumb-cell{
+    width: 140px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px 6px;
+    }
+
+    .pub-thumb{
+    width: 120px;
+    height: 80px;          /* 카드 느낌 */
+    object-fit: cover;     /* 꽉 채우기 (잘림 싫으면 contain으로) */
+    border-radius: 8px;
+    border: 1px solid #eee;
+    }
+
+    .pub-thumb-link{
+    display: inline-block;
+    }
+    
     tr {
         border-bottom: 1px solid #ddd;
     }
     tr:first-child {
         border-top: 1px solid #ddd;
     }
+    
 </style>
