@@ -14,57 +14,68 @@ def to_int_year(s: str) -> int:
     digits = re.sub(r"[^0-9]", "", norm(s))
     return int(digits) if digits else 0
 
-def clean_item(row: Dict[str, str]) -> Dict[str, Any]:
+def journal_item(row: Dict[str, str]) -> Dict[str, Any]:
     item = {
-        "year": to_int_year(row.get("year", "")),
-        "title": norm(row.get("title", "")),
-        "authors": norm(row.get("authors", "")),
-        "venue": norm(row.get("venue", "")),
-        "link": norm(row.get("link", "")),
+        "year": to_int_year(row.get("year")),
+        "title": norm(row.get("title")),
+        "authors": norm(row.get("authors")),
+        "journal": norm(row.get("journal")),
+        "volume": norm(row.get("volume")),
+        "number": norm(row.get("number")),
+        "pages": norm(row.get("pages")),
+        "link": norm(row.get("link")),
     }
-    # 빈 값 제거
     return {k: v for k, v in item.items() if v not in ["", 0]}
 
-def main(csv_url: str, out_journal: str, out_conf_int: str, out_conf_dom: str):
+def conf_item(row: Dict[str, str]) -> Dict[str, Any]:
+    item = {
+        "year": to_int_year(row.get("year")),
+        "title": norm(row.get("title")),
+        "authors": norm(row.get("authors")),
+        "conf": norm(row.get("conference")),
+        "location": norm(row.get("location")),
+        "month": norm(row.get("month")),
+        "link": norm(row.get("link")),
+    }
+    return {k: v for k, v in item.items() if v not in ["", 0]}
+
+def main(csv_url, out_journal, out_conf_int, out_conf_dom):
     r = requests.get(csv_url, timeout=30)
     r.raise_for_status()
 
     reader = csv.DictReader(io.StringIO(r.text))
 
-    buckets: Dict[str, List[Dict[str, Any]]] = {
-        "journal": [],
-        "conf_international": [],
-        "conf_domestic": [],
-    }
+    journal, conf_int, conf_dom = [], [], []
 
     for row in reader:
-        t = norm(row.get("type", "")).lower()
-        year = to_int_year(row.get("year", ""))
-        title = norm(row.get("title", ""))
+        t = norm(row.get("type")).lower()
+        year = to_int_year(row.get("year"))
+        title = norm(row.get("title"))
 
         if not year or not title:
             continue
 
-        if t not in buckets:
-            # type 오타/누락이면 스킵(원하면 journal로 보내도록 바꿀 수도 있음)
-            continue
+        if t == "journal":
+            journal.append(journal_item(row))
+        elif t == "conf_international":
+            conf_int.append(conf_item(row))
+        elif t == "conf_domestic":
+            conf_dom.append(conf_item(row))
 
-        buckets[t].append(clean_item(row))
-
-    # 최신이 위로 오게 정렬
-    for k in buckets:
-        buckets[k].sort(key=lambda x: (x.get("year", 0), x.get("title", "")), reverse=True)
+    for lst in (journal, conf_int, conf_dom):
+        lst.sort(key=lambda x: (x["year"], x["title"]), reverse=True)
 
     with open(out_journal, "w", encoding="utf-8") as f:
-        yaml.safe_dump(buckets["journal"], f, allow_unicode=True, sort_keys=False)
+        yaml.safe_dump(journal, f, allow_unicode=True, sort_keys=False)
     with open(out_conf_int, "w", encoding="utf-8") as f:
-        yaml.safe_dump(buckets["conf_international"], f, allow_unicode=True, sort_keys=False)
+        yaml.safe_dump(conf_int, f, allow_unicode=True, sort_keys=False)
     with open(out_conf_dom, "w", encoding="utf-8") as f:
-        yaml.safe_dump(buckets["conf_domestic"], f, allow_unicode=True, sort_keys=False)
+        yaml.safe_dump(conf_dom, f, allow_unicode=True, sort_keys=False)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
-        print("Usage: python scripts/sync_pubs_split.py <csv_url> <out_journal> <out_conf_int> <out_conf_dom>")
-        sys.exit(1)
-
-    main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+    main(
+        sys.argv[1],
+        sys.argv[2],
+        sys.argv[3],
+        sys.argv[4],
+    )
