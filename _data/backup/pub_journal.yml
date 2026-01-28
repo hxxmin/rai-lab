@@ -1,0 +1,51 @@
+
+- year: 2025
+  title: "Robust Visual–Inertial Odometry via Multi-Scale Deep Feature Extraction and Flow-Consistency Filtering"
+  authors: "Hae Min Cho"
+  journal: "Applied Sciences"
+  volume: 15
+  pages: "10935"
+  link: "https://doi.org/10.3390/app152010935"
+
+- year: 2024
+  title: "Finite-Plane Simultaneous Localization and Mapping (FP-SLAM): A New RGB-D SLAM Exploiting Inter-Feature Relationship"
+  authors: "Hae Min Cho and Euntai Kim"
+  journal: "IEEE Transactions on Instrumentation and Measurement"
+  volume: 73
+  link: "https://doi.org/10.1109/TIM.2024.3418089"
+
+- year: 2023
+  title: "Dynamic Object-Aware Visual Odometry (VO) Estimation Based on Optical Flow Matching"
+  authors: "Hae Min Cho and Euntai Kim"
+  journal: "IEEE Access"
+  volume: 11
+  pages: "11642-11651"
+  link: "https://doi.org/10.1109/ACCESS.2023.3241961"
+
+- year: 2022
+  title: "SP-SLAM: Surfel-point simultaneous localization and mapping"
+  authors: "Hae Min Cho, HyungGi Jo and Euntai Kim"
+  journal: "IEEE/ASME Transactions on Mechatronics"
+  volume: 27
+  number: 5
+  pages: "2568-2579"
+  link: "https://doi.org/10.1109/TMECH.2021.3118719"
+
+- year: 2019
+  title: "센서 융합 시스템을 이용한 심층 컨벌루션 신경망 기반 6자유도 위치 재인식"
+  authors: "조형기, 조해민, 이성원, 김은태"
+  journal: "로봇학회 논문지"
+  volume: 14
+  number: 2
+  pages: "87-93"
+  link: "https://doi.org/10.7746/jkros.2019.14.2.087"
+
+- year: 2018
+  title: "Efficient grid-based Rao--Blackwellized particle filter SLAM with interparticle map sharing"
+  authors: "HyungGi Jo, Hae Min Cho, Sungjin Jo and Euntai Kim"
+  journal: "IEEE/ASME Transactions on Mechatronics"
+  volume: 23
+  number: 2
+  pages: "714-724"
+  link: "https://doi.org/10.1109/TMECH.2018.2795252"
+

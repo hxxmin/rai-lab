@@ -1,0 +1,46 @@
+name: Sync Publications from Google Sheet (split)
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # 6시간마다
+  workflow_dispatch:        # 수동 실행 버튼
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          pip install requests pyyaml
+
+      - name: Sync publications to _data/pub_*.yml
+        env:
+          PUBS_CSV_URL: ${{ secrets.PUBS_CSV_URL }}
+        run: |
+          python scripts/sync_pubs_split.py "$PUBS_CSV_URL" \
+            "_data/pub_journal.yml" \
+            "_data/pub_conf_int.yml" \
+            "_data/pub_conf_dom.yml"
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add _data/pub_journal.yml _data/pub_conf_int.yml _data/pub_conf_dom.yml
+          if git diff --cached --quiet; then
+            echo "No changes."
+            exit 0
+          fi
+          git commit -m "chore: sync publications from Google Sheet"
+          git push
