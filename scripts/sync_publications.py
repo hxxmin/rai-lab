@@ -52,6 +52,7 @@ def normalize_row(row: Dict[str, str]) -> Dict[str, str]:
 def main(csv_url, out_journal, out_conf_int, out_conf_dom):
     r = requests.get(csv_url, timeout=30)
     r.raise_for_status()
+    r.encoding = "utf-8"
 
     reader = csv.DictReader(io.StringIO(r.text))
 
