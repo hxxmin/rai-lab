@@ -1,48 +1,41 @@
 - year: 2025
-  title: "딥러닝 기반 가속화 특징점을 이용한 RGB-D SLAM"
-  authors: "조해민"
-  conf: "제40회 제어로봇시스템학회 학술대회 (ICROS 2025)"
-  location: "전주, 대한민국"
-  month: "Jun"
-
+  title: 딥러닝 기반 가속화 특징점을 이용한 RGB-D SLAM
+  authors: 조해민
+  conf: 제40회 제어로봇시스템학회 학술대회 (ICROS 2025)
+  location: 전주, 대한민국
+  month: Jun
 - year: 2017
-  title: "Time-of-Flight(TOF) 센서를 이용한 실시간 3차원 형상 재구성"
-  authors: "조해민, 조형기, 이성원, 김은태"
-  conf: "제27회 통신정보 합동학술대회 (JCCI 2017)"
-  location: "부산, 대한민국"
-  month: "Apr"
-
+  title: Time-of-Flight(TOF) 센서를 이용한 실시간 3차원 형상 재구성
+  authors: 조해민, 조형기, 이성원, 김은태
+  conf: 제27회 통신정보 합동학술대회 (JCCI 2017)
+  location: 부산, 대한민국
+  month: Apr
 - year: 2016
-  title: "외부 카메라 정보를 융합한 3차원 환경 재구성"
-  authors: "조해민, 조성진, 조형기, 전세웅, 김은태"
-  conf: "제11회 한국로봇종합학술대회"
-  location: "평창, 대한민국"
-  month: "Jan"
-
+  title: 외부 카메라 정보를 융합한 3차원 환경 재구성
+  authors: 조해민, 조성진, 조형기, 전세웅, 김은태
+  conf: 제11회 한국로봇종합학술대회
+  location: 평창, 대한민국
+  month: Jan
 - year: 2016
-  title: "단계별 이미지 특징점 매칭 기법에 기반한 SLAM 및 3차원 환경 재구성 알고리즘"
-  authors: "조해민, 조형기, 이성원, 김은태"
-  conf: "한국지능시스템학회 2016년도 추계학술대회"
-  location: "서울, 대한민국"
-  month: "Oct"
-
+  title: 단계별 이미지 특징점 매칭 기법에 기반한 SLAM 및 3차원 환경 재구성 알고리즘
+  authors: 조해민, 조형기, 이성원, 김은태
+  conf: 한국지능시스템학회 2016년도 추계학술대회
+  location: 서울, 대한민국
+  month: Oct
 - year: 2015
-  title: "RGB-D 센서를 이용한 이미지 특징점 기반 SLAM 및 3차원 환경 재구성"
-  authors: "조해민, 조성진, 조형기, 전세웅, 김은태"
-  conf: "제10회 한국로봇종합학술대회"
-  location: "대전, 대한민국"
-  month: "May"
-
+  title: 지능 로봇을 위한 3D 환경 재구성 기술동향
+  authors: 조해민, 조성진, 조형기, 김은태
+  conf: 제10회 한국국방기술학회
+  location: 서울, 대한민국
+  month: Oct
 - year: 2015
-  title: "지능 로봇을 위한 3D 환경 재구성 기술동향"
-  authors: "조해민, 조성진, 조형기, 김은태"
-  conf: "제10회 한국국방기술학회"
-  location: "서울, 대한민국"
-  month: "Oct"
-
+  title: RGB-D 센서를 이용한 이미지 특징점 기반 SLAM 및 3차원 환경 재구성
+  authors: 조해민, 조성진, 조형기, 전세웅, 김은태
+  conf: 제10회 한국로봇종합학술대회
+  location: 대전, 대한민국
+  month: May
 - year: 2014
-  title: "Time-of-Flight(TOF) 센서를 이용한 이동로봇의 FastSLAM 알고리즘"
-  authors: "조해민, 조형기, 조성진, 전세웅, 김은태"
-  conf: "2014 정보 및 제어 학술대회 (CICS)"
-  location: "제주, 대한민국"
-  month: "Oct"
+  title: Time-of-Flight(TOF) 센서를 이용한 이동로봇의 FastSLAM 알고리즘
+  authors: 조해민, 조형기, 조성진, 전세웅, 김은태
+  conf: 2014 정보 및 제어 학술대회
+  month: Oct

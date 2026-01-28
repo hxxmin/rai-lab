@@ -1,21 +1,20 @@
 - year: 2021
-  title: "A Hybrid SLAM in Complicated Indoor Environments for Mobile Robot on Low-Cost Platform"
-  authors: "Hae Min Cho, Seongwon Lee and Euntai Kim"
-  conf: "Proc. of the 18th International Conference on Ubiquitous Robots (UR 2021)"
-  location: "Gangneung, Korea"
-  month: "Jul"
-
+  title: A Hybrid SLAM in Complicated Indoor Environments for Mobile Robot on Low-Cost
+    Platform
+  authors: Hae Min Cho, Seongwon Lee and Euntai Kim
+  conf: Proc. of the 18th International Conference on Ubiquitous Robots (UR 2021)
+  location: Gangneung, Korea
+  month: Jul
 - year: 2019
-  title: "Odometry estimation via CNN using sparse LiDAR data"
-  authors: "Hae Min Cho, HyungGi Jo, Seongwon Lee, Euntai Kim"
-  conf: "Proc. of the 16th International Conference on Ubiquitous Robots (UR 2019)"
-  location: "Jeju, Korea"
-  month: "Jun"
-  pages: "124-127"
-
+  title: Odometry estimation via CNN using sparse LiDAR data
+  authors: Hae Min Cho, HyungGi Jo, Seongwon Lee, Euntai Kim
+  conf: Proc. of the 16th International Conference on Ubiquitous Robots (UR 2019)
+  location: Jeju, Korea
+  month: Jun
 - year: 2015
-  title: "A Simple Extrinsic Calibration Method of Color and Depth Camera"
-  authors: "Hae Min Cho, Seongwon Jo, HyungGi Jo, Euntai Kim"
-  conf: "Proc. of 2015 International Conference on Fuzzy Theory and Its Applications (iFuzzy2015)"
-  location: "Yilan, Taiwan"
-  month: "Nov"
+  title: A Simple Extrinsic Calibration Method of Color and Depth Camera
+  authors: Hae Min Cho, Seongwon Jo, HyungGi Jo, Euntai Kim
+  conf: Proc. of 2015 International Conference on Fuzzy Theory and Its Applications
+    (iFuzzy2015)
+  location: Yilan, Taiwan
+  month: Nov
