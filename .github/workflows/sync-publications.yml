@@ -44,3 +44,7 @@ jobs:
           fi
           git commit -m "chore: sync publications from Google Sheet"
           git push
+      - name: Debug output
+        run: |
+          echo "==== pub_journal.yml ===="
+          head -n 50 _data/pub_journal.yml || true

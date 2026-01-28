@@ -39,6 +39,16 @@ def conf_item(row: Dict[str, str]) -> Dict[str, Any]:
     }
     return {k: v for k, v in item.items() if v not in ["", 0]}
 
+def normalize_row(row: Dict[str, str]) -> Dict[str, str]:
+    # 헤더에 공백 / BOM(﻿) / 대소문자 섞임 대응
+    fixed = {}
+    for k, v in row.items():
+        if k is None:
+            continue
+        kk = k.strip().lower().lstrip("\ufeff")  # BOM 제거
+        fixed[kk] = v
+    return fixed
+
 def main(csv_url, out_journal, out_conf_int, out_conf_dom):
     r = requests.get(csv_url, timeout=30)
     r.raise_for_status()
@@ -48,9 +58,11 @@ def main(csv_url, out_journal, out_conf_int, out_conf_dom):
     journal, conf_int, conf_dom = [], [], []
 
     for row in reader:
-        t = norm(row.get("type")).lower()
-        year = to_int_year(row.get("year"))
-        title = norm(row.get("title"))
+        row = normalize_row(row)
+
+        t = norm(row.get("type", "")).lower()
+        year = to_int_year(row.get("year", ""))
+        title = norm(row.get("title", ""))
 
         if not year or not title:
             continue
