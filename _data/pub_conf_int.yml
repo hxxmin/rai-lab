@@ -1,1 +1,13 @@
-[]
+- year: 2021
+  title: A Hybrid SLAM in Complicated Indoor Environments for Mobile Robot on Low-Cost
+    Platform
+  authors: Hae Min Cho, Seongwon Lee and Euntai Kim
+  link: Gangneung, Korea
+- year: 2019
+  title: Odometry estimation via CNN using sparse LiDAR data
+  authors: Hae Min Cho, HyungGi Jo, Seongwon Lee, Euntai Kim
+  link: Jeju, Korea
+- year: 2015
+  title: A Simple Extrinsic Calibration Method of Color and Depth Camera
+  authors: Hae Min Cho, Seongwon Jo, HyungGi Jo, Euntai Kim
+  link: Yilan, Taiwan
