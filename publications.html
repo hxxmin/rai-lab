@@ -40,10 +40,10 @@ header-img: "img/home-bg.jpg"
                 {% if pub.image_url %}
                 {% if pub.link %}
                     <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link" aria-label="Open paper link">
-                    <img src="{{ pub.image_url }}" alt="thumbnail" class="pub-thumb" loading="lazy" referrerpolicy="no-referrer">
+                    <img src="{{ pub.image_url }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
                     </a>
                 {% else %}
-                    <img src="{{ pub.image_url }}" alt="thumbnail" class="pub-thumb" loading="lazy" referrerpolicy="no-referrer">
+                    <img src="{{ pub.image_url }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
                 {% endif %}
                 {% endif %}
             </td>
