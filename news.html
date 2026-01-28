@@ -5,9 +5,10 @@ header-img: "img/home-bg.jpg"
 ---
 
 <table class="news-table">
-    {% assign year_counts = site.data.news | group_by: "year" %}
+    {% assign sorted = site.data.news | sort: "date" | reverse %}
     {% assign top5 = sorted | slice: 0, 5 %}
     {% assign year_counts = top5 | group_by: "year" %}
+
     {% for group in year_counts %}
         {% assign first = true %}
         {% for news in group.items %}
@@ -16,10 +17,11 @@ header-img: "img/home-bg.jpg"
             <td class="news-year" rowspan="{{ group.items.size }}">{{ news.year }}</td>
             {% assign first = false %}
             {% endif %}
+
             <td class="news-details">
-                <b class="news-type">{{ news.type }}</b>
-                <i class="news-date">({{ news.month }})</i> 
-                <span class="news-content">{{ news.content }}</span>
+            <b class="news-type">{{ news.type }}</b>
+            <i class="news-date">({{ news.month }})</i>
+            <span class="news-content">{{ news.content }}</span>
             </td>
         </tr>
         {% endfor %}

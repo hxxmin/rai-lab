@@ -5,8 +5,7 @@ header-img: "img/home-bg.jpg"
 ---
 
 <table>
-    {% assign year_counts = site.data.project %}  
-    {% for pub in group.items %}
+    {% for pub in site.data.project %}
     <tr>
         <td class="pub-details">
             <b class="pub-title">{{ pub.title }}</b> <br>
