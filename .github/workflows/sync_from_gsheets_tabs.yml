@@ -38,7 +38,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add _data/pub_journal.yml _data/pub_conf_int.yml _data/pub_conf_dom.yml
+          git add _data/*.yml
           if git diff --cached --quiet; then
             echo "No changes."
             exit 0
