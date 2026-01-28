@@ -206,7 +206,7 @@ def sync_projects(project_csv_url: str):
             projects.append(item)
 
     projects.sort(key=lambda x: (x.get("year", 0), x.get("title", "")), reverse=True)
-    dump_yaml(projects, "_data/projects.yml")
+    dump_yaml(projects, "_data/project.yml")
 
     if len(projects) == 0:
         raise SystemExit("No projects parsed. Check project CSV header/URL.")
