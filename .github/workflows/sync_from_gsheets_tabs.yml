@@ -24,12 +24,15 @@ jobs:
         run: |
           pip install requests pyyaml
 
-      - name: Sync publications from Google Sheet tabs
+      - name: Sync data from Google Sheet tabs
         env:
           JOURNAL_CSV_URL: ${{ secrets.JOURNAL_CSV_URL }}
           CONF_CSV_URL: ${{ secrets.CONF_CSV_URL }}
+          PATENT_CSV_URL: ${{ secrets.PATENT_CSV_URL }}
+          PROJECT_CSV_URL: ${{ secrets.PROJECT_CSV_URL }}
+          NEWS_CSV_URL: ${{ secrets.NEWS_CSV_URL }}
         run: |
-          python scripts/sync_from_gsheets_tabs.py "$JOURNAL_CSV_URL" "$CONF_CSV_URL"
+          python scripts/sync_from_gsheets_tabs.py "$JOURNAL_CSV_URL" "$CONF_CSV_URL" "$PATENT_CSV_URL" "$PROJECT_CSV_URL" "$NEWS_CSV_URL"
 
       - name: Commit & push if changed
         run: |

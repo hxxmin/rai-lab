@@ -6,7 +6,13 @@ from typing import Dict, List, Any, Optional
 
 import requests
 import yaml
+from datetime import datetime
 
+MONTH_ABBR = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+
+def parse_date_yyyy_mm_dd(s: str) -> datetime:
+    # expects "YYYY-MM-DD"
+    return datetime.strptime(norm(s), "%Y-%m-%d")
 
 # ---------- utils ----------
 def norm(s: Optional[str]) -> str:
@@ -48,6 +54,26 @@ def dump_yaml(items: List[Dict[str, Any]], out_path: str):
 
 
 # ---------- mappings ----------
+def news_item(row: Dict[str, str]) -> Optional[Dict[str, Any]]:
+    ds = norm(row.get("date"))
+    if not ds:
+        return None
+
+    try:
+        dt = parse_date_yyyy_mm_dd(ds)
+    except ValueError:
+        # date가 깨지면 스킵(원하면 에러로 바꿀 수 있음)
+        return None
+
+    item: Dict[str, Any] = {
+        "year": dt.year,
+        "month": MONTH_ABBR[dt.month - 1],
+        "date": ds,  # YAML에서 2025-10-11 형태로 쓰려면 문자열이 제일 안전
+        "type": norm(row.get("type")),
+        "content": norm(row.get("content")),
+    }
+    return {k: v for k, v in item.items() if v not in ["", 0]}
+
 def journal_item(row: Dict[str, str]) -> Optional[Dict[str, Any]]:
     year = to_int_year(row.get("year"))
     title = norm(row.get("title"))
@@ -86,8 +112,54 @@ def conf_item(row: Dict[str, str]) -> Optional[Dict[str, Any]]:
     }
     return {k: v for k, v in item.items() if v not in ["", 0]}
 
+def project_item(row: Dict[str, str]) -> Optional[Dict[str, Any]]:
+    year = to_int_year(row.get("year"))
+    title = norm(row.get("title"))
+    if not year or not title:
+        return None
+
+    item: Dict[str, Any] = {
+        "year": year,
+        "title": title,
+        "period": norm(row.get("period")),
+        "funder": norm(row.get("funder")),
+    }
+    return {k: v for k, v in item.items() if v not in ["", 0]}
+
+def patent_item(row: Dict[str, str]) -> Optional[Dict[str, Any]]:
+    year = to_int_year(row.get("year"))
+    title = norm(row.get("title"))
+    if not year or not title:
+        return None
+
+    item: Dict[str, Any] = {
+        "year": year,
+        "title": title,
+        "authors": norm(row.get("authors")),
+        "registration": norm(row.get("registration")),
+        "application": norm(row.get("application")),
+    }
+    return {k: v for k, v in item.items() if v not in ["", 0]}
 
 # ---------- main pipeline ----------
+def sync_news(news_csv_url: str):
+    rows = fetch_csv_rows(news_csv_url)
+    items: List[Dict[str, Any]] = []
+
+    for row in rows:
+        item = news_item(row)
+        if item:
+            items.append(item)
+
+    # 최신 날짜 먼저
+    items.sort(key=lambda x: x.get("date", ""), reverse=True)
+
+    dump_yaml(items, "_data/news.yml")
+
+    if len(items) == 0:
+        raise SystemExit("No news parsed. Check news CSV header/URL/date format.")
+
+
 def sync_publications(journal_csv_url: str, conf_csv_url: str):
     # Journals tab -> _data/pub_journal.yml
     journal_rows = fetch_csv_rows(journal_csv_url)
@@ -124,16 +196,54 @@ def sync_publications(journal_csv_url: str, conf_csv_url: str):
     if len(journals) + len(conf_int) + len(conf_dom) == 0:
         raise SystemExit("No publications parsed. Check CSV headers / URLs / type values.")
 
+def sync_projects(project_csv_url: str):
+    rows = fetch_csv_rows(project_csv_url)
+    projects: List[Dict[str, Any]] = []
+
+    for row in rows:
+        item = project_item(row)
+        if item:
+            projects.append(item)
+
+    projects.sort(key=lambda x: (x.get("year", 0), x.get("title", "")), reverse=True)
+    dump_yaml(projects, "_data/projects.yml")
+
+    if len(projects) == 0:
+        raise SystemExit("No projects parsed. Check project CSV header/URL.")
+    
+def sync_patents(patent_csv_url: str):
+    rows = fetch_csv_rows(patent_csv_url)
+    patents: List[Dict[str, Any]] = []
+
+    for row in rows:
+        item = patent_item(row)
+        if item:
+            patents.append(item)
+
+    # 최신 먼저 정렬
+    patents.sort(key=lambda x: (x.get("year", 0), x.get("title", "")), reverse=True)
+
+    dump_yaml(patents, "_data/patent.yml")
+
+    if len(patents) == 0:
+        raise SystemExit("No patents parsed. Check patent CSV header/URL.")
 
 def main():
-    if len(sys.argv) != 3:
-        print("Usage: python scripts/sync_from_gsheets_tabs.py <journal_csv_url> <conf_csv_url>")
+    if len(sys.argv) != 6:
+        print("Usage: python scripts/sync_from_gsheets_tabs.py <journal_csv_url> <conf_csv_url> <patent_csv_url> <project_csv_url> <news_csv_url>")
         sys.exit(1)
 
     journal_csv_url = sys.argv[1]
     conf_csv_url = sys.argv[2]
+    patent_csv_url = sys.argv[3]
+    project_csv_url = sys.argv[4]
+    news_csv_url = sys.argv[5]
 
     sync_publications(journal_csv_url, conf_csv_url)
+    sync_patents(patent_csv_url)
+    sync_projects(project_csv_url)
+    sync_news(news_csv_url)
+
 
 if __name__ == "__main__":
     main()
