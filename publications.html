@@ -36,8 +36,8 @@ header-img: "img/home-bg.jpg"
                 {% endif %}
             </td>
             
+            <td class="pub-thumb-cell {% if pub.image_url %}has-thumb{% endif %}">
             {% if pub.image_url %}
-            <td class="pub-thumb-cell">
                 {% if pub.link %}
                     <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link" aria-label="Open paper link">
                     <img src="{{ pub.image_url | strip }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
@@ -45,8 +45,8 @@ header-img: "img/home-bg.jpg"
                 {% else %}
                     <img src="{{ pub.image_url | strip }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
                 {% endif %}
-            </td>
             {% endif %}
+            </td>
         </tr>
         {% endfor %}
     {% endfor %}
@@ -80,7 +80,7 @@ header-img: "img/home-bg.jpg"
                 {% endif %}
             </td>
             
-            <td class="pub-thumb-cell">
+            <td class="pub-thumb-cell {% if pub.image_url %}has-thumb{% endif %}">
                 {% if pub.image_url %}
                 {% if pub.link %}
                     <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link" aria-label="Open paper link">
@@ -123,7 +123,7 @@ header-img: "img/home-bg.jpg"
                 {% endif %}
             </td>
             
-            <td class="pub-thumb-cell">
+            <td class="pub-thumb-cell {% if pub.image_url %}has-thumb{% endif %}">
                 {% if pub.image_url %}
                 {% if pub.link %}
                     <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link" aria-label="Open paper link">
@@ -176,11 +176,20 @@ header-img: "img/home-bg.jpg"
         color: blue;
         text-decoration: none;
     }
-    .pub-thumb-cell{
-        width: 220px;
+    
+    .pub-thumb-cell { 
+        width:0; 
+        min-width:0; 
+        padding:0; 
+        padding: 4px 2px;
+    }
+    
+    .pub-thumb-cell.has-thumb { 
+        width:220px; 
+        min-width:220px; 
         text-align: center;
         vertical-align: middle;
-        padding: 4px 2px;
+        padding:4px 2px; 
     }
 
     .pub-thumb{
