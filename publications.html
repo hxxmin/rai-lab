@@ -40,10 +40,10 @@ header-img: "img/home-bg.jpg"
                 {% if pub.image_url %}
                 {% if pub.link %}
                     <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link" aria-label="Open paper link">
-                    <img src="{{ pub.image_url }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
+                    <img src="{{ pub.image_url | strip }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
                     </a>
                 {% else %}
-                    <img src="{{ pub.image_url }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
+                    <img src="{{ pub.image_url | strip }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
                 {% endif %}
                 {% endif %}
             </td>
@@ -153,22 +153,24 @@ header-img: "img/home-bg.jpg"
         text-decoration: none;
     }
     .pub-thumb-cell{
-    width: 140px;
-    text-align: center;
-    vertical-align: middle;
-    padding: 8px 6px;
+        width: 260px;
+        text-align: center;
+        vertical-align: middle;
+        padding: 8px 6px;
     }
 
     .pub-thumb{
-    width: 120px;
-    height: 80px;          /* 카드 느낌 */
-    object-fit: cover;     /* 꽉 채우기 (잘림 싫으면 contain으로) */
-    border-radius: 8px;
-    border: 1px solid #eee;
+        display: block;
+        height: 140px;           /* ← 이미지 크기(=행 높이 커짐). 120~200 추천 */
+        width: 100%;
+        object-fit: cover;     /* 꽉 채우기 (잘림 싫으면 contain으로) */
+        border-radius: 8px;
+        border: 1px solid #eee;
     }
 
     .pub-thumb-link{
-    display: inline-block;
+        display: block;
+        width: 100%;
     }
     
     tr {
