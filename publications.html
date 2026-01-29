@@ -26,8 +26,10 @@ header-img: "img/home-bg.jpg"
                   <i class="pub-paper">{{ pub.journal }}</i>,
                     <span class="pub-info">
                       {% if pub.volume %}Vol. {{ pub.volume }},{% endif %}
-                      {% if pub.number %}<span class="pub-info">No. {{ pub.number }},{% endif %}
-                      {% if pub.pages %}<span class="pub-info">pp. {{ pub.pages }}{% endif %}
+                      {% if pub.number %}No. {{ pub.number }},{% endif %}
+                      {% if pub.pages %}pp. {{ pub.pages }}, {% endif %}
+                      {{ pub.month }},
+                      {{ pub.year }}
                       </span>
                   {% if pub.link %}
                     <a href="{{ pub.link }}" target="_blank" class="pub-link">[Link]</a>
@@ -56,8 +58,10 @@ header-img: "img/home-bg.jpg"
                   <i class="pub-paper">{{ pub.journal }}</i>,
                     <span class="pub-info">
                       {% if pub.volume %}Vol. {{ pub.volume }},{% endif %}
-                      {% if pub.number %}<span class="pub-info">No. {{ pub.number }},{% endif %}
-                      {% if pub.pages %}<span class="pub-info">pp. {{ pub.pages }}{% endif %}
+                      {% if pub.number %}No. {{ pub.number }},{% endif %}
+                      {% if pub.pages %}pp. {{ pub.pages }}, {% endif %}
+                      {{ pub.month }},
+                      {{ pub.year }}
                       </span>
                   {% if pub.link %}
                     <a href="{{ pub.link }}" target="_blank" class="pub-link">[Link]</a>
