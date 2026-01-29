@@ -6,7 +6,7 @@
   volume: '15'
   pages: '10935'
   link: https://doi.org/10.3390/app152010935
-  image_url: https://drive.google.com/uc?export=view&id=1m0xjZKmXunRPo1Ga-D5amy5Fw2nfHxTt
+  image_url: https://drive.google.com/thumbnail?id=1m0xjZKmXunRPo1Ga-D5amy5Fw2nfHxTt&sz=w1000
 - year: 2024
   title: 'Finite-Plane Simultaneous Localization and Mapping (FP-SLAM): A New RGB-D
     SLAM Exploiting Inter-Feature Relationship'
@@ -14,7 +14,6 @@
   journal: IEEE Transactions on Instrumentation and Measurement
   volume: '73'
   link: https://doi.org/10.1109/TIM.2024.3418089
-  image_url: https://drive.google.com/thumbnail?id=1m0xjZKmXunRPo1Ga-D5amy5Fw2nfHxTt&sz=w1000
 - year: 2023
   title: Dynamic Object-Aware Visual Odometry (VO) Estimation Based on Optical Flow
     Matching
