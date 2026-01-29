@@ -24,9 +24,11 @@ header-img: "img/home-bg.jpg"
                   <b class="pub-title">{{ pub.title }}</b><br>
                   <span class="pub-authors">{{ pub.authors }}</span>,
                   <i class="pub-paper">{{ pub.journal }}</i>,
-                  {% if pub.volume %}<span class="pub-info">Vol. {{ pub.volume }}</span>,{% endif %}
-                  {% if pub.number %}<span class="pub-info">No. {{ pub.number }}</span>,{% endif %}
-                  {% if pub.pages %}<span class="pub-info">pp. {{ pub.pages }}</span>{% endif %}
+                    <span class="pub-info">
+                      {% if pub.volume %}Vol. {{ pub.volume }},{% endif %}
+                      {% if pub.number %}<span class="pub-info">No. {{ pub.number }},{% endif %}
+                      {% if pub.pages %}<span class="pub-info">pp. {{ pub.pages }}{% endif %}
+                      </span>
                   {% if pub.link %}
                     <a href="{{ pub.link }}" target="_blank" class="pub-link">[Link]</a>
                   {% endif %}
@@ -52,9 +54,11 @@ header-img: "img/home-bg.jpg"
                   <b class="pub-title">{{ pub.title }}</b><br>
                   <span class="pub-authors">{{ pub.authors }}</span>,
                   <i class="pub-paper">{{ pub.journal }}</i>,
-                  {% if pub.volume %}<span class="pub-info">Vol. {{ pub.volume }}</span>,{% endif %}
-                  {% if pub.number %}<span class="pub-info">No. {{ pub.number }}</span>,{% endif %}
-                  {% if pub.pages %}<span class="pub-info">pp. {{ pub.pages }}</span>{% endif %}
+                    <span class="pub-info">
+                      {% if pub.volume %}Vol. {{ pub.volume }},{% endif %}
+                      {% if pub.number %}<span class="pub-info">No. {{ pub.number }},{% endif %}
+                      {% if pub.pages %}<span class="pub-info">pp. {{ pub.pages }}{% endif %}
+                      </span>
                   {% if pub.link %}
                     <a href="{{ pub.link }}" target="_blank" class="pub-link">[Link]</a>
                   {% endif %}
@@ -88,7 +92,7 @@ header-img: "img/home-bg.jpg"
                   <span class="pub-authors">{{ pub.authors }}</span>,
                   <i class="pub-paper">{{ pub.conf }}</i>,
                     <span class="pub-info">
-                      {% if pub.location %} {{ pub.volume }},{% endif %}
+                      {% if pub.location %} {{ pub.location }},{% endif %}
                       {% if pub.month %} {{ pub.month }},{% endif %}
                       {% if pub.year %} {{ pub.year }}{% endif %}
                     </span>
@@ -118,7 +122,7 @@ header-img: "img/home-bg.jpg"
                   <span class="pub-authors">{{ pub.authors }}</span>,
                   <i class="pub-paper">{{ pub.conf }}</i>,
                     <span class="pub-info">
-                      {% if pub.location %} {{ pub.volume }},{% endif %}
+                      {% if pub.location %} {{ pub.location }},{% endif %}
                       {% if pub.month %} {{ pub.month }},{% endif %}
                       {% if pub.year %} {{ pub.year }}{% endif %}
                     </span>
@@ -153,7 +157,7 @@ header-img: "img/home-bg.jpg"
                   <span class="pub-authors">{{ pub.authors }}</span>,
                   <i class="pub-paper">{{ pub.conf }}</i>,
                     <span class="pub-info">
-                      {% if pub.location %} {{ pub.volume }},{% endif %}
+                      {% if pub.location %} {{ pub.location }},{% endif %}
                       {% if pub.month %} {{ pub.month }},{% endif %}
                       {% if pub.year %} {{ pub.year }}{% endif %}
                     </span>
@@ -183,7 +187,7 @@ header-img: "img/home-bg.jpg"
                   <span class="pub-authors">{{ pub.authors }}</span>,
                   <i class="pub-paper">{{ pub.conf }}</i>,
                     <span class="pub-info">
-                      {% if pub.location %} {{ pub.volume }},{% endif %}
+                      {% if pub.location %} {{ pub.location }},{% endif %}
                       {% if pub.month %} {{ pub.month }},{% endif %}
                       {% if pub.year %} {{ pub.year }}{% endif %}
                     </span>
