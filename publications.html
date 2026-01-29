@@ -36,8 +36,8 @@ header-img: "img/home-bg.jpg"
                 {% endif %}
             </td>
             
+            {% if pub.image_url %}
             <td class="pub-thumb-cell">
-                {% if pub.image_url %}
                 {% if pub.link %}
                     <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link" aria-label="Open paper link">
                     <img src="{{ pub.image_url | strip }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
@@ -45,8 +45,8 @@ header-img: "img/home-bg.jpg"
                 {% else %}
                     <img src="{{ pub.image_url | strip }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
                 {% endif %}
-                {% endif %}
             </td>
+            {% endif %}
         </tr>
         {% endfor %}
     {% endfor %}
@@ -178,7 +178,6 @@ header-img: "img/home-bg.jpg"
     }
     .pub-thumb-cell{
         width: 220px;
-        min-width: 260px;   /* 추가 */
         text-align: center;
         vertical-align: middle;
         padding: 4px 2px;
