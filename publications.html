@@ -7,7 +7,7 @@ header-img: "img/home-bg.jpg"
 
 <h3>Journals</h3>
 
-<table>
+<table class="pub-table">
     {% assign year_counts = site.data.pub_journal | group_by: "year" %}  <!-- 연도별 그룹화 -->
     {% for group in year_counts %}
         {% assign first = true %}
@@ -77,7 +77,7 @@ header-img: "img/home-bg.jpg"
 <h3>Conferences</h3>
 <h4>International</h4>
 
-<table>
+<table class="pub-table">
     {% assign year_counts = site.data.pub_conf_int | group_by: "year" %}  <!-- 연도별 그룹화 -->
     {% for group in year_counts %}
         {% assign first = true %}
@@ -143,7 +143,7 @@ header-img: "img/home-bg.jpg"
 <br>
 <h4>Domestic</h4>
 
-<table>
+<table class="pub-table">
     {% assign year_counts = site.data.pub_conf_dom | group_by: "year" %}  <!-- 연도별 그룹화 -->
     {% for group in year_counts %}
         {% assign first = true %}
@@ -272,4 +272,49 @@ header-img: "img/home-bg.jpg"
         border-top: 1px solid #ddd;
     }
     
+    /* 모바일: 텍스트 위 / 이미지 아래 (table + colspan 있어도 OK) */
+    @media (max-width: 640px){
+      .pub-table{
+        display: block;
+        width: 100%;
+      }
+
+      .pub-table tr{
+        display: block;
+        padding: 10px 0;
+      }
+
+      /* year(연도) 칸: 모바일에서 숨김 (원하면 아래 옵션 참고) */
+      .pub-table .pub-year{
+        display: none;
+      }
+
+      /* details, thumb를 한 줄(100%)로 */
+      .pub-table .pub-details,
+      .pub-table .pub-thumb-cell{
+        display: block;
+        width: 100% !important;
+        padding: 8px 12px;
+        box-sizing: border-box;
+      }
+
+      /* 이미지 없는 행(colspan=2)도 100%로 */
+      .pub-table .pub-details[colspan]{
+        width: 100% !important;
+      }
+
+      /* 모바일에서 이미지 크기 */
+      .pub-table .pub-thumb{
+        width: 100%;
+        height: 180px;      /* 모바일에서 보기 좋게 */
+        object-fit: contain; /* cover로 바꾸면 꽉 차게(일부 잘림) */
+        margin-top: 6px;
+      }
+
+      /* 오른쪽 썸네일 칸이 있던 폭 고정 해제 */
+      .pub-table .pub-thumb-cell{
+        padding-top: 0;
+      }
+    }
+
 </style>
