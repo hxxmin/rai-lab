@@ -252,9 +252,10 @@ header-img: "img/home-bg.jpg"
 
     .pub-thumb{
         display: block;
-        height: 140px;           /* ← 이미지 크기(=행 높이 커짐). 120~200 추천 */
+        height: 120px;           /* ← 이미지 크기(=행 높이 커짐). 120~200 추천 */
         width: 100%;
-        object-fit: cover;     /* 꽉 채우기 (잘림 싫으면 contain으로) */
+        /* object-fit: cover;     /* 꽉 채우기 (잘림 싫으면 contain으로) */
+        object-fit: contain;     /* 꽉 채우기 (잘림 싫으면 contain으로) */
         border-radius: 8px;
         border: 1px solid #eee;
     }

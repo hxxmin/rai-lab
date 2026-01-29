@@ -85,6 +85,7 @@ def journal_item(row: Dict[str, str]) -> Optional[Dict[str, Any]]:
         "month": norm(row.get("month")),
         "title": title,
         "authors": norm(row.get("authors")),
+        "journal": norm(row.get("journal")),
         "volume": norm(row.get("volume")),
         "number": norm(row.get("number")),
         "pages": norm(row.get("pages")),
