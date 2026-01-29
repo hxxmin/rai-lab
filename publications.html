@@ -18,35 +18,48 @@ header-img: "img/home-bg.jpg"
             {% assign first = false %}
             {% endif %}
 
-            <td class="pub-details">
-                <b class="pub-title">{{ pub.title }}</b> <br>
-                <span class="pub-authors">{{ pub.authors }}</span>,  
-                <i class="pub-journal">{{ pub.journal }}</i>, 
-                {% if pub.volume %}
-                    <span class="pub-volume">Vol. {{ pub.volume }}</span>,
-                {% endif %}
-                {% if pub.number %}
-                    <span class="pub-number">No. {{ pub.number }}</span>,
-                {% endif %}
-                {% if pub.pages %}
-                    <span class="pub-pages">pp. {{ pub.pages }}</span>
-                {% endif %}
-                {% if pub.link %}
-                <a href="{{ pub.link }}" target="_blank" class="pub-link">[Link]</a>
-                {% endif %}
-            </td>
-            
-            <td class="pub-thumb-cell {% if pub.image_url %}has-thumb{% endif %}">
             {% if pub.image_url %}
-                {% if pub.link %}
-                    <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link" aria-label="Open paper link">
-                    <img src="{{ pub.image_url | strip }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
+                <!-- 이미지 있는 경우 -->
+                <td class="pub-details">
+                  <b class="pub-title">{{ pub.title }}</b><br>
+                  <span class="pub-authors">{{ pub.authors }}</span>,
+                  <i class="pub-journal">{{ pub.journal }}</i>,
+                  {% if pub.volume %}<span class="pub-volume">Vol. {{ pub.volume }}</span>,{% endif %}
+                  {% if pub.number %}<span class="pub-number">No. {{ pub.number }}</span>,{% endif %}
+                  {% if pub.pages %}<span class="pub-pages">pp. {{ pub.pages }}</span>{% endif %}
+                  {% if pub.link %}
+                    <a href="{{ pub.link }}" target="_blank" class="pub-link">[Link]</a>
+                  {% endif %}
+                </td>
+        
+                <td class="pub-thumb-cell">
+                  {% if pub.link %}
+                    <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link">
+                      <img src="{{ pub.image_url | strip }}"
+                           class="pub-thumb"
+                           referrerpolicy="no-referrer"
+                           loading="eager"
+                           decoding="async">
                     </a>
-                {% else %}
-                    <img src="{{ pub.image_url | strip }}" class="pub-thumb" referrerpolicy="no-referrer" loading="eager" decoding="async">    
-                {% endif %}
-            {% endif %}
-            </td>
+                  {% else %}
+                    <img src="{{ pub.image_url | strip }}" class="pub-thumb">
+                  {% endif %}
+                </td>
+        
+              {% else %}
+                <!-- 이미지 없는 경우: details가 오른쪽까지 확장 -->
+                <td class="pub-details" colspan="2">
+                  <b class="pub-title">{{ pub.title }}</b><br>
+                  <span class="pub-authors">{{ pub.authors }}</span>,
+                  <i class="pub-journal">{{ pub.journal }}</i>,
+                  {% if pub.volume %}<span class="pub-volume">Vol. {{ pub.volume }}</span>,{% endif %}
+                  {% if pub.number %}<span class="pub-number">No. {{ pub.number }}</span>,{% endif %}
+                  {% if pub.pages %}<span class="pub-pages">pp. {{ pub.pages }}</span>{% endif %}
+                  {% if pub.link %}
+                    <a href="{{ pub.link }}" target="_blank" class="pub-link">[Link]</a>
+                  {% endif %}
+                </td>
+              {% endif %}
         </tr>
         {% endfor %}
     {% endfor %}
@@ -176,17 +189,8 @@ header-img: "img/home-bg.jpg"
         color: blue;
         text-decoration: none;
     }
-    
     .pub-thumb-cell { 
-        width:0; 
-        min-width:0; 
-        padding:0; 
-        padding: 4px 2px;
-    }
-    
-    .pub-thumb-cell.has-thumb { 
-        width:220px; 
-        min-width:220px; 
+        width:200px; 
         text-align: center;
         vertical-align: middle;
         padding:4px 2px; 
