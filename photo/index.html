@@ -1,0 +1,312 @@
+---
+layout: page
+title: "Photo"
+header-img: "img/home-bg.jpg"
+---
+
+{% assign photo_files = site.static_files | where_exp: "file", "file.path contains '/photo/'" %}
+{% assign image_files = photo_files | where_exp: "file", "file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.png' or file.extname == '.gif' or file.extname == '.webp'" %}
+{% assign albums = image_files | group_by_exp: "file", "file.path | split: '/' | slice: 0, 3 | join: '/'" | sort: "name" | reverse %}
+
+<div class="photo-gallery">
+    {% if albums.size > 0 %}
+        {% for album in albums %}
+            {% assign folder_name = album.name | split: "/" | last %}
+            {% assign date_raw = folder_name | split: "_" | first %}
+            {% assign event_name = folder_name | replace_first: date_raw, "" | replace_first: "_", "" | replace: "_", " " %}
+            {% if event_name == "" %}
+                {% assign event_name = folder_name %}
+            {% endif %}
+            {% assign sorted_images = album.items | sort: "name" %}
+            {% assign cover_image = sorted_images.first %}
+
+            {% assign display_date = date_raw %}
+            {% if date_raw.size == 8 %}
+                {% assign yyyy = date_raw | slice: 0, 4 %}
+                {% assign mm = date_raw | slice: 4, 2 %}
+                {% assign dd = date_raw | slice: 6, 2 %}
+                {% assign display_date = yyyy | append: "." | append: mm | append: "." | append: dd %}
+            {% elsif date_raw.size == 6 %}
+                {% assign yyyy = date_raw | slice: 0, 4 %}
+                {% assign mm = date_raw | slice: 4, 2 %}
+                {% assign display_date = yyyy | append: "." | append: mm %}
+            {% endif %}
+
+            <article class="photo-card">
+                <button class="photo-trigger" type="button" data-album-data="photo-album-{{ forloop.index0 }}">
+                    <span class="photo-card-media">
+                        <img src="{{ cover_image.path | prepend: site.baseurl }}" alt="{{ event_name | escape }}">
+                    </span>
+                    <span class="photo-card-label">
+                        <strong>{{ display_date }}</strong>
+                        <span>{{ event_name }}</span>
+                    </span>
+                    <span class="photo-card-count">{{ sorted_images.size }} photo{% if sorted_images.size > 1 %}s{% endif %}</span>
+                </button>
+                <script id="photo-album-{{ forloop.index0 }}" type="application/json">
+                    {
+                        "title": {{ display_date | append: " | " | append: event_name | jsonify }},
+                        "images": [
+                            {% for image in sorted_images %}
+                                {{ image.path | prepend: site.baseurl | jsonify }}{% unless forloop.last %},{% endunless %}
+                            {% endfor %}
+                        ]
+                    }
+                </script>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p class="photo-empty">No images found in the photo folder yet.</p>
+    {% endif %}
+</div>
+
+<div class="modal fade photo-modal" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="photoModalLabel"></h4>
+                <p class="photo-modal-count" id="photoModalCount"></p>
+            </div>
+            <div class="modal-body">
+                <div id="photoCarousel" class="carousel slide" data-interval="false">
+                    <ol class="carousel-indicators"></ol>
+                    <div class="carousel-inner" role="listbox"></div>
+                    <a class="left carousel-control" href="#photoCarousel" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#photoCarousel" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .photo-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 24px;
+        margin-top: 20px;
+    }
+
+    .photo-card {
+        min-width: 0;
+    }
+
+    .photo-trigger {
+        width: 100%;
+        border: 1px solid #d9e3ea;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #fff;
+        padding: 0;
+        text-align: left;
+        box-shadow: 0 10px 28px rgba(20, 51, 74, 0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .photo-trigger:hover,
+    .photo-trigger:focus {
+        transform: translateY(-4px);
+        box-shadow: 0 14px 32px rgba(20, 51, 74, 0.14);
+        outline: none;
+    }
+
+    .photo-card-media {
+        position: relative;
+        display: block;
+        aspect-ratio: 4 / 3;
+        background: #eff5f8;
+    }
+
+    .photo-card-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .photo-card-label {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 14px 16px 4px;
+        color: #18364a;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+
+    .photo-card-label strong {
+        font-size: 16px;
+    }
+
+    .photo-card-count {
+        display: block;
+        padding: 0 16px 16px;
+        color: #69808f;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+    }
+
+    .photo-empty {
+        grid-column: 1 / -1;
+        padding: 24px;
+        border: 1px dashed #c6d3db;
+        border-radius: 12px;
+        text-align: center;
+        color: #5f7380;
+        background: #f8fbfd;
+    }
+
+    .photo-modal .modal-content {
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    .photo-modal .modal-header {
+        border-bottom: 1px solid #edf2f5;
+        padding: 18px 22px 12px;
+    }
+
+    .photo-modal .modal-title {
+        color: #18364a;
+        font-weight: 700;
+    }
+
+    .photo-modal-count {
+        margin: 6px 0 0;
+        color: #69808f;
+        font-size: 13px;
+    }
+
+    .photo-modal .modal-body {
+        padding: 0;
+        background: #0f1e29;
+    }
+
+    .photo-modal .carousel-inner {
+        background: #0f1e29;
+    }
+
+    .photo-modal .item {
+        height: 72vh;
+        min-height: 360px;
+        text-align: center;
+    }
+
+    .photo-modal .item img {
+        max-width: 100%;
+        max-height: 72vh;
+        margin: 0 auto;
+        object-fit: contain;
+    }
+
+    .photo-modal .carousel-control {
+        background: none !important;
+        width: 12%;
+    }
+
+    .photo-modal .carousel-indicators {
+        bottom: 12px;
+    }
+
+    .photo-modal .carousel-indicators li {
+        border-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .photo-modal .carousel-indicators .active {
+        background-color: #ffffff;
+    }
+
+    @media (max-width: 991px) {
+        .photo-gallery {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 640px) {
+        .photo-gallery {
+            grid-template-columns: 1fr;
+        }
+
+        .photo-modal .item,
+        .photo-modal .item img {
+            max-height: 58vh;
+            height: 58vh;
+            min-height: 240px;
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        function buildCarousel(album) {
+            var $carousel = $("#photoCarousel");
+            var $indicators = $carousel.find(".carousel-indicators");
+            var $inner = $carousel.find(".carousel-inner");
+            var $controls = $carousel.find(".carousel-control");
+
+            album.images.sort(function (a, b) {
+                return a.localeCompare(b, undefined, { numeric: true, sensitivity: "base" });
+            });
+
+            $indicators.empty();
+            $inner.empty();
+
+            album.images.forEach(function (src, index) {
+                var indicator = $("<li>")
+                    .attr("data-target", "#photoCarousel")
+                    .attr("data-slide-to", index);
+
+                var item = $("<div>").addClass("item");
+                if (index === 0) {
+                    indicator.addClass("active");
+                    item.addClass("active");
+                }
+
+                $("<img>")
+                    .attr("src", src)
+                    .attr("alt", album.title + " image " + (index + 1))
+                    .appendTo(item);
+
+                $indicators.append(indicator);
+                $inner.append(item);
+            });
+
+            if (album.images.length > 1) {
+                $indicators.show();
+                $controls.show();
+            } else {
+                $indicators.hide();
+                $controls.hide();
+            }
+
+            $carousel.carousel(0);
+        }
+
+        $(function () {
+            $(".photo-trigger").on("click", function () {
+                var dataId = $(this).data("album-data");
+                var album = JSON.parse(document.getElementById(dataId).textContent);
+
+                $("#photoModalLabel").text(album.title);
+                $("#photoModalCount").text(album.images.length + (album.images.length > 1 ? " photos" : " photo"));
+                buildCarousel(album);
+                $("#photoModal").modal("show");
+            });
+
+            $("#photoModal").on("hidden.bs.modal", function () {
+                $("#photoCarousel .carousel-inner").empty();
+                $("#photoCarousel .carousel-indicators").empty();
+            });
+        });
+    })();
+</script>
