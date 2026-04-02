@@ -4,64 +4,79 @@ title: "Courses"
 header-img: "img/home-bg.jpg"
 ---
 
-<table class="news-table">
-    {% assign sorted = site.data.news | sort: "date" | reverse %}
-    {% assign top5 = sorted | slice: 0, 5 %}
-    {% assign year_counts = top5 | group_by: "year" %}
+{% assign courses = site.data.courses | sort: "semester" | sort: "year" | reverse %}
 
-    {% for group in year_counts %}
-        {% assign first = true %}
-        {% for news in group.items %}
-        <tr>
-            {% if first %}
-            <td class="news-year" rowspan="{{ group.items.size }}">{{ news.year }}</td>
-            {% assign first = false %}
-            {% endif %}
+<div class="course-list">
+    {% assign current_key = "" %}
+    {% for course in courses %}
+        {% capture group_key %}{{ course.year }}-{{ course.semester }}{% endcapture %}
 
-            <td class="news-details">
-            <b class="news-type">{{ news.type }}</b>
-            <i class="news-date">({{ news.month }})</i>
-            <span class="news-content">{{ news.content }}</span>
-            </td>
-        </tr>
-        {% endfor %}
+        {% if group_key != current_key %}
+            {% unless forloop.first %}
+                    </ul>
+                </section>
+            {% endunless %}
+            <section class="course-group">
+                <h2 class="course-term">{{ course.year }}-{{ course.semester }}</h2>
+                <ul class="course-items">
+            {% assign current_key = group_key %}
+        {% endif %}
+
+                    <li>{{ course.name }}</li>
+
+        {% if forloop.last %}
+                </ul>
+            </section>
+        {% endif %}
     {% endfor %}
-</table>
+</div>
 
 <style>
-    .news-table {
-        width: 100%;
-        border-collapse: collapse;
+    .course-list {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
     }
-    .news-year {
-        width: 10%;
+
+    .course-group {
+        padding-bottom: 18px;
+        border-bottom: 1px solid #e2e8ee;
+    }
+
+    .course-group:last-child {
+        border-bottom: none;
+    }
+
+    .course-term {
+        margin: 0 0 12px;
+        font-size: 28px;
         font-weight: bold;
-        text-align: center;
-        vertical-align: middle;
-        background-color: #f9f9f9;
+        color: #1d3b4f;
     }
-    .news-details {
-        width: 90%;
-        padding-left: 10px;
-        vertical-align: top;
+
+    .course-items {
+        margin: 0;
+        padding-left: 22px;
     }
-    .news-type {
-        font-size: 16px; 
-        font-weight: bold;
+
+    .course-items li {
+        margin-bottom: 8px;
+        font-size: 17px;
+        color: #334e5c;
+        line-height: 1.6;
     }
-    .news-date {
-        font-size: 15px; 
-        font-style: italic;
-        color: #666;
+
+    .course-items li:last-child {
+        margin-bottom: 0;
     }
-    .news-content {
-        font-size: 15px; 
-        color: #444;
-    }
-    tr {
-        border-bottom: 1px solid #ddd;
-    }
-    tr:first-child {
-        border-top: 1px solid #ddd;
+
+    @media (max-width: 640px) {
+        .course-term {
+            font-size: 24px;
+        }
+
+        .course-items li {
+            font-size: 16px;
+        }
     }
 </style>

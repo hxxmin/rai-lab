@@ -11,6 +11,9 @@ title: "Home"
 
 <!-- 연구실 소개 -->
 <div class="lab-description">
+    <button type="button" class="lab-hero-image" data-toggle="modal" data-target="#mainImageModal" aria-label="Open main image">
+        <img src="{{ site.baseurl }}/img/main_img.png" alt="Robotics and AI Laboratory main visual">
+    </button>
     <h2>Welcome to Robotics & AI Laboratory</h2>
     <p>
         <b>Robotics & AI Laboratory는 로보틱스, 지능형 로봇 제어, 그리고 자율주행 기술의 혁신을 연구합니다.</b> <br><br>
@@ -29,6 +32,22 @@ title: "Home"
         By optimizing the synergy between perception, reasoning, and action, 
         we aim to expand the potential of next-generation autonomous intelligent robots and redefine the boundaries of what robots can achieve in our daily lives.
     </p>
+</div>
+
+<div class="modal fade" id="mainImageModal" tabindex="-1" role="dialog" aria-labelledby="mainImageModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content main-image-modal-content">
+            <div class="modal-header main-image-modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="mainImageModalLabel">RAI-LAB Main Image</h4>
+            </div>
+            <div class="modal-body main-image-modal-body">
+                <img src="{{ site.baseurl }}/img/main_img.png" alt="Robotics and AI Laboratory main visual enlarged">
+            </div>
+        </div>
+    </div>
 </div>
 <hr>
 
@@ -83,6 +102,50 @@ title: "Home"
     }
 
     /* 뉴스 섹션 스타일 */
+    .lab-hero-image {
+        width: 100%;
+        display: block;
+        margin: 0 0 28px;
+        padding: 0;
+        border: none;
+        border-radius: 18px;
+        overflow: hidden;
+        background: #eef4f7;
+        box-shadow: 0 16px 36px rgba(20, 51, 74, 0.12);
+        cursor: zoom-in;
+    }
+
+    .lab-hero-image img {
+        width: 100%;
+        height: auto;
+        max-height: 70vh;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .main-image-modal-content {
+        border-radius: 18px;
+        overflow: hidden;
+    }
+
+    .main-image-modal-header {
+        border-bottom: 1px solid #e8eef2;
+    }
+
+    .main-image-modal-body {
+        padding: 0;
+        background: #0f1e29;
+        text-align: center;
+    }
+
+    .main-image-modal-body img {
+        width: 100%;
+        height: auto;
+        max-height: 82vh;
+        object-fit: contain;
+    }
+
     .news-section {
         max-width: 800px;
         margin: 0 auto;
@@ -130,5 +193,16 @@ title: "Home"
 
     .news-more a:hover {
         background: #0056b3;
+    }
+
+    @media (max-width: 767px) {
+        .lab-hero-image {
+            margin-bottom: 20px;
+            border-radius: 14px;
+        }
+
+        .lab-hero-image img {
+            max-height: none;
+        }
     }
 </style>
