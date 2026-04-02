@@ -4,21 +4,36 @@ title: "Photo"
 header-img: "img/home-bg.jpg"
 ---
 
-{% assign photo_files = site.static_files | where_exp: "file", "file.path contains '/photo/'" %}
-{% assign image_files = photo_files | where_exp: "file", "file.extname == '.jpg' or file.extname == '.jpeg' or file.extname == '.png' or file.extname == '.gif' or file.extname == '.webp'" %}
-{% assign albums = image_files | group_by_exp: "file", "file.path | split: '/' | slice: 0, 3 | join: '/'" | sort: "name" | reverse %}
+{% assign sorted_files = site.static_files | sort: "path" %}
+{% assign album_keys = "" %}
+
+{% for file in sorted_files %}
+    {% assign ext = file.extname | downcase %}
+    {% if file.path contains '/photo/' and ext != '.html' %}
+        {% assign path_parts = file.path | split: "/" %}
+        {% if path_parts.size >= 4 %}
+            {% capture album_key %}{{ path_parts[1] }}/{{ path_parts[2] }}{% endcapture %}
+            {% capture album_token %}|{{ album_key }}|{% endcapture %}
+            {% unless album_keys contains album_token %}
+                {% capture album_keys %}{{ album_keys }}{{ album_token }}{% endcapture %}
+            {% endunless %}
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+{% assign albums = album_keys | split: "|" %}
 
 <div class="photo-gallery">
-    {% if albums.size > 0 %}
-        {% for album in albums %}
-            {% assign folder_name = album.name | split: "/" | last %}
+    {% assign has_album = false %}
+    {% for album in albums %}
+        {% unless album == "" %}
+            {% assign has_album = true %}
+            {% assign folder_name = album | split: "/" | last %}
             {% assign date_raw = folder_name | split: "_" | first %}
             {% assign event_name = folder_name | replace_first: date_raw, "" | replace_first: "_", "" | replace: "_", " " %}
             {% if event_name == "" %}
                 {% assign event_name = folder_name %}
             {% endif %}
-            {% assign sorted_images = album.items | sort: "name" %}
-            {% assign cover_image = sorted_images.first %}
 
             {% assign display_date = date_raw %}
             {% if date_raw.size == 8 %}
@@ -32,32 +47,50 @@ header-img: "img/home-bg.jpg"
                 {% assign display_date = yyyy | append: "." | append: mm %}
             {% endif %}
 
+            {% assign image_count = 0 %}
+            {% assign cover_image = "" %}
+
             <article class="photo-card">
                 <button class="photo-trigger" type="button" data-album-data="photo-album-{{ forloop.index0 }}">
                     <span class="photo-card-media">
-                        <img src="{{ cover_image.path | prepend: site.baseurl }}" alt="{{ event_name | escape }}">
+                        {% for file in sorted_files %}
+                            {% assign ext = file.extname | downcase %}
+                            {% if file.path contains album and ext != '.html' %}
+                                {% if cover_image == "" %}
+                                    {% assign cover_image = file.path %}
+                                {% endif %}
+                                {% assign image_count = image_count | plus: 1 %}
+                            {% endif %}
+                        {% endfor %}
+                        <img src="{{ cover_image | prepend: site.baseurl }}" alt="{{ event_name | escape }}">
                     </span>
                     <span class="photo-card-label">
                         <strong>{{ display_date }}</strong>
                         <span>{{ event_name }}</span>
                     </span>
-                    <span class="photo-card-count">{{ sorted_images.size }} photo{% if sorted_images.size > 1 %}s{% endif %}</span>
+                    <span class="photo-card-count">{{ image_count }} photo{% if image_count > 1 %}s{% endif %}</span>
                 </button>
                 <script id="photo-album-{{ forloop.index0 }}" type="application/json">
                     {
                         "title": {{ display_date | append: " | " | append: event_name | jsonify }},
                         "images": [
-                            {% for image in sorted_images %}
-                                {{ image.path | prepend: site.baseurl | jsonify }}{% unless forloop.last %},{% endunless %}
+                            {% assign first_image = true %}
+                            {% for file in sorted_files %}
+                                {% assign ext = file.extname | downcase %}
+                                {% if file.path contains album and ext != '.html' %}
+                                    {% unless first_image %},{% endunless %}{{ file.path | prepend: site.baseurl | jsonify }}{% assign first_image = false %}
+                                {% endif %}
                             {% endfor %}
                         ]
                     }
                 </script>
             </article>
-        {% endfor %}
-    {% else %}
+        {% endunless %}
+    {% endfor %}
+
+    {% unless has_album %}
         <p class="photo-empty">No images found in the photo folder yet.</p>
-    {% endif %}
+    {% endunless %}
 </div>
 
 <div class="modal fade photo-modal" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel">
