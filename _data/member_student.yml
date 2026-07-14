@@ -7,6 +7,13 @@
   intr: "Intelligent Robotics, Robot Navigation, Sensor Fusion"
   visible: true
 
+- name: "Cho Min Ju"
+  role: "Undergraduate Research Assistant"
+  img: "img/member/ChoMinJu.jpg"
+  email: "michelle5054@gachon.ac.kr"
+  intr: "Vision-Language Navigation, SLAM, Mobile Robots"
+  visible: true
+
 - name: "Lee Chae Min"
   role: "Undergraduate Research Assistant"
   img: "img/member/LeeChaeMin.jpg"
@@ -25,4 +32,4 @@
   google: https://scholar.google.com/citations?user=wWe-FnsAAAAJ&hl=en
   intr: Intelligent Robotics, Mobile Robotics, Autonomous Driving Vehicles, SLAM
   url: http://ahmetcecen.github.io/
-  visible: false 
+  visible: false
