@@ -14,6 +14,12 @@
   intr: "Vision-Language Navigation, SLAM, Mobile Robots"
   visible: true
 
+- name: "Kim Byeong Min"
+  role: "Undergraduate Research Assistant"
+  img: "img/member/KimByeongMin.jpg"
+  intr: "Vision-Language Action Model, Optimization, SLAM"
+  visible: true
+
 - name: "Lee Chae Min"
   role: "Undergraduate Research Assistant"
   img: "img/member/LeeChaeMin.jpg"
