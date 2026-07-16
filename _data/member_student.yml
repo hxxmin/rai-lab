@@ -17,6 +17,7 @@
 - name: "Kim Byeong Min"
   role: "Undergraduate Research Assistant"
   img: "img/member/KimByeongMin.jpg"
+  email: "dungminxi@gachon.ac.kr"
   intr: "Vision-Language Action Model, Optimization, SLAM"
   visible: true
 
