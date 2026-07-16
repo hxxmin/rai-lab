@@ -1,3 +1,9 @@
+- year: 2026
+  title: Implicit Scene 기반 인스턴스 객체 인식 결합 SLAM 프레임워크
+  authors: 이채민, 조해민
+  conf: 제21회 한국로봇종합학술대회
+  location: 평창, 대한민국
+  month: Feb
 - year: 2025
   title: 딥러닝 기반 가속화 특징점을 이용한 RGB-D SLAM
   authors: 조해민
