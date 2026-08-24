@@ -1,20 +1,20 @@
 # Student Members
 
-- name: "Lee Chae Min"
+- name: "Lee Chaemin"
   role: "M.S. Student"
   img: "img/member/LeeChaeMin.jpg"
   email: "chaemin8600@gachon.ac.kr"
   intr: "Intelligent Robotics, Robot Navigation, Sensor Fusion"
   visible: true
 
-- name: "Cho Min Ju"
+- name: "Cho Minju"
   role: "Undergraduate Research Assistant"
   img: "img/member/ChoMinJu.jpg"
   email: "michelle5054@gachon.ac.kr"
   intr: "Vision-Language Navigation, SLAM, Mobile Robots"
   visible: true
 
-- name: "Kim Byeong Min"
+- name: "Kim Byeongmin"
   role: "Undergraduate Research Assistant"
   img: "img/member/KimByeongMin.jpg"
   email: "dungminxi@gachon.ac.kr"
