@@ -1,3 +1,8 @@
+- year: 2026
+  month: Sep
+  title: Real-Time RGB-D SLAM with Gaussian Scene Representation for Dynamic Environments
+  authors: Chaemin Lee, Hae Min Cho
+  journal: Scientific Reports
 - year: 2025
   month: Oct
   title: Robust Visual–Inertial Odometry via Multi-Scale Deep Feature Extraction and
