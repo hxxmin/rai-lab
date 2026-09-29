@@ -1,5 +1,11 @@
 - year: 2026
   month: Sep
+  title: Resource-aware structural point-line RGB-D SLAM for dynamic indoor environments
+  authors: Seongwon Lee, Hyukdoo Choi, Hae Min Cho
+  journal: Scientific Reports
+  image_url: https://drive.google.com/file/d/14LNb0H29Bhfk3LzKjHgVB-a-5l7ChqLw/view?usp=drive_link
+- year: 2026
+  month: Sep
   title: Real-Time RGB-D SLAM with Gaussian Scene Representation for Dynamic Environments
   authors: Chaemin Lee, Hae Min Cho
   journal: Scientific Reports
