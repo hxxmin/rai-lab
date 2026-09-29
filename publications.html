@@ -38,7 +38,7 @@ header-img: "img/home-bg.jpg"
         
                 <td class="pub-thumb-cell">
                   {% if pub.link %}
-                    <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link">
+                    <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link pub-thumb-trigger">
                       <img src="{{ pub.image_url | strip }}"
                            class="pub-thumb"
                            referrerpolicy="no-referrer"
@@ -46,8 +46,11 @@ header-img: "img/home-bg.jpg"
                            decoding="async">
                     </a>
                   {% else %}
-                    <img src="{{ pub.image_url | strip }}" class="pub-thumb">
+                    <span class="pub-thumb-trigger" tabindex="0" role="img" aria-label="Preview publication image">
+                      <img src="{{ pub.image_url | strip }}" class="pub-thumb">
+                    </span>
                   {% endif %}
+                  <img src="{{ pub.image_url | strip }}" class="pub-thumb-popover" alt="" aria-hidden="true">
                 </td>
         
               {% else %}
@@ -107,7 +110,7 @@ header-img: "img/home-bg.jpg"
         
                 <td class="pub-thumb-cell">
                   {% if pub.link %}
-                    <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link">
+                    <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link pub-thumb-trigger">
                       <img src="{{ pub.image_url | strip }}"
                            class="pub-thumb"
                            referrerpolicy="no-referrer"
@@ -115,8 +118,11 @@ header-img: "img/home-bg.jpg"
                            decoding="async">
                     </a>
                   {% else %}
-                    <img src="{{ pub.image_url | strip }}" class="pub-thumb">
+                    <span class="pub-thumb-trigger" tabindex="0" role="img" aria-label="Preview publication image">
+                      <img src="{{ pub.image_url | strip }}" class="pub-thumb">
+                    </span>
                   {% endif %}
+                  <img src="{{ pub.image_url | strip }}" class="pub-thumb-popover" alt="" aria-hidden="true">
                 </td>
         
               {% else %}
@@ -172,7 +178,7 @@ header-img: "img/home-bg.jpg"
         
                 <td class="pub-thumb-cell">
                   {% if pub.link %}
-                    <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link">
+                    <a href="{{ pub.link }}" target="_blank" class="pub-thumb-link pub-thumb-trigger">
                       <img src="{{ pub.image_url | strip }}"
                            class="pub-thumb"
                            referrerpolicy="no-referrer"
@@ -180,8 +186,11 @@ header-img: "img/home-bg.jpg"
                            decoding="async">
                     </a>
                   {% else %}
-                    <img src="{{ pub.image_url | strip }}" class="pub-thumb">
+                    <span class="pub-thumb-trigger" tabindex="0" role="img" aria-label="Preview publication image">
+                      <img src="{{ pub.image_url | strip }}" class="pub-thumb">
+                    </span>
                   {% endif %}
+                  <img src="{{ pub.image_url | strip }}" class="pub-thumb-popover" alt="" aria-hidden="true">
                 </td>
         
               {% else %}
@@ -248,6 +257,7 @@ header-img: "img/home-bg.jpg"
         text-align: center;
         vertical-align: middle;
         padding:4px 2px; 
+      position: relative;
     }
 
     .pub-thumb{
@@ -260,9 +270,39 @@ header-img: "img/home-bg.jpg"
         border: 1px solid #eee;
     }
 
-    .pub-thumb-link{
+    .pub-thumb-trigger {
         display: block;
         width: 100%;
+        cursor: pointer;
+    }
+
+    .pub-thumb-popover {
+        position: absolute;
+        top: 50%;
+      left: calc(100% + 12px);
+      right: auto;
+        z-index: 1000;
+      width: min(38vw, 480px);
+      height: auto;
+      max-height: 55vh;
+      padding: 8px;
+        transform: translateY(-50%);
+        box-sizing: border-box;
+        object-fit: contain;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 160ms ease, visibility 160ms ease;
+      }
+
+    .pub-thumb-trigger:hover + .pub-thumb-popover,
+    .pub-thumb-trigger:focus-visible + .pub-thumb-popover {
+        opacity: 1;
+        visibility: visible;
     }
     
     tr {
@@ -314,6 +354,14 @@ header-img: "img/home-bg.jpg"
       /* 오른쪽 썸네일 칸이 있던 폭 고정 해제 */
       .pub-table .pub-thumb-cell{
         padding-top: 0;
+      }
+
+      .pub-thumb-popover {
+        top: calc(100% + 8px);
+        right: 0;
+        width: min(90vw, 480px);
+        max-height: 55vh;
+        transform: none;
       }
     }
 
