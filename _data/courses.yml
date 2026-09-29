@@ -1,18 +1,19 @@
+# 순서: 아래부터 위로
 - year: 2026
   semester: 2
-  name: 지능형로보틱스특론(대학원)
-- year: 2026
-  semester: 2
-  name: 드론과 로보틱스
-- year: 2026
-  semester: 2
-  name: 알고리즘
+  name: 로보틱스AI (부트캠프)
 - year: 2026
   semester: 2
   name: AI 프로그래밍입문
 - year: 2026
   semester: 2
-  name: 로보틱스AI(부트캠프)
+  name: 알고리즘
+- year: 2026
+  semester: 2
+  name: 드론과 로보틱스
+- year: 2026
+  semester: 2
+  name: 지능형로보틱스특론 (대학원)
 
 - year: 2026
   semester: 1
@@ -23,15 +24,19 @@
 - year: 2026
   semester: 1
   name: 소프트웨어수학
-- year: 2025
-  semester: 2
-  name: 드론과 로보틱스
+  
 - year: 2025
   semester: 2
   name: 알고리즘
 - year: 2025
-  semester: 1
-  name: 소프트웨어수학
+  semester: 2
+  name: 드론과 로보틱스
+
 - year: 2025
   semester: 1
   name: AI 프로그래밍입문
+- year: 2025
+  semester: 1
+  name: 소프트웨어수학
+
+  
