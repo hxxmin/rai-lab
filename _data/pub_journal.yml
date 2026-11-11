@@ -1,4 +1,10 @@
 - year: 2026
+  month: Nov
+  title: Vectorized Lane Marking Detection and Refinement From Satellite Imagery for
+    HD Maps
+  authors: Seongjun Youn, Hae Min Cho, Hyukdoo Choi
+  link: https://doi.org/10.1109/ACCESS.2026.3751893
+- year: 2026
   month: Sep
   title: Resource-aware structural point-line RGB-D SLAM for dynamic indoor environments
   authors: Seongwon Lee, Hyukdoo Choi, Hae Min Cho

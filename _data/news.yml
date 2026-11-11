@@ -1,4 +1,10 @@
 - year: 2026
+  month: Nov
+  date: '2026-11-09'
+  type: Journal
+  content: A paper titled <i>“Vectorized Lane Marking Detection and Refinement From
+    Satellite Imagery for HD Maps”</i> has been published in the journal <i>IEEE Access</i>.
+- year: 2026
   month: Sep
   date: '2026-09-24'
   type: Journal
